@@ -21,6 +21,8 @@
   --border: #e2e8f0;
   --danger: #c53030;
   --danger-light: #fed7d7;
+  --gold: #2c7a7b;
+  --popular: #2c7a7b;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
   --radius: 12px;
@@ -88,6 +90,29 @@ header {
   font-size: 0.75rem; font-weight: 700;
   padding: 1px 6px; border-radius: 10px;
   min-width: 18px; text-align: center;
+}
+
+.last-cooked-banner {
+  background: linear-gradient(135deg, var(--teal-bg), #fff);
+  border-right: 4px solid var(--teal);
+  padding: 10px 14px;
+  margin: 12px 16px 0;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: var(--shadow);
+}
+.last-cooked-banner:hover { transform: translateX(-2px); }
+.last-cooked-banner .label {
+  font-size: 0.8rem; color: var(--text-muted);
+}
+.last-cooked-banner .recipe-name {
+  font-weight: 600; color: var(--teal-dark);
+}
+.last-cooked-banner .date {
+  font-size: 0.85rem; color: var(--text-light);
+  margin-right: auto;
 }
 
 .tabs {
@@ -197,6 +222,21 @@ main {
   overflow: hidden;
   min-height: 2.8em;
 }
+.recipe-rating-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+}
+.recipe-stars {
+  color: var(--gold);
+  letter-spacing: -1px;
+}
+.recipe-stars-empty { color: var(--border); }
+.recipe-cooked-count {
+  color: var(--teal);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 .recipe-times {
   font-size: 0.8rem; color: var(--text-muted);
   display: flex; gap: 10px; flex-wrap: wrap;
@@ -213,13 +253,22 @@ main {
   border-radius: 10px;
   font-weight: 500;
 }
-.recipe-fav-badge {
+.recipe-card-tag.popular {
+  background: var(--popular);
+  color: white;
+  font-weight: 700;
+}
+.recipe-badges {
   position: absolute; top: 8px; left: 8px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.recipe-fav-badge, .recipe-popular-badge {
   background: rgba(255,255,255,0.95);
   border-radius: 50%;
   width: 34px; height: 34px;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-size: 1.1rem;
 }
 .recipe-fav-badge svg { width: 18px; height: 18px; fill: var(--teal); }
 
@@ -410,6 +459,29 @@ main {
 .checkbox-group input { width: 20px; height: 20px; accent-color: var(--teal); }
 .checkbox-group label { margin: 0; cursor: pointer; }
 
+.star-rating-input {
+  display: flex; gap: 4px; direction: ltr; justify-content: flex-end;
+  padding: 8px; background: var(--bg);
+  border-radius: var(--radius-sm);
+}
+.star-rating-input .star {
+  font-size: 2rem; cursor: pointer;
+  color: var(--border);
+  transition: color 0.15s, transform 0.15s;
+  user-select: none;
+}
+.star-rating-input .star.active { color: var(--gold); }
+.star-rating-input .star:hover { transform: scale(1.15); }
+.star-rating-input .clear-rating {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+  align-self: center;
+  margin-left: 10px;
+  cursor: pointer;
+  direction: rtl;
+}
+
 .detail-header {
   display: flex; justify-content: space-between; align-items: center;
   padding: 12px 16px; background: var(--teal); color: var(--white);
@@ -445,6 +517,71 @@ main {
   .detail-content { padding: 20px 16px; }
 }
 .fav-star { color: var(--teal); font-size: 1.5rem; }
+
+.detail-rating {
+  display: flex; align-items: center; gap: 10px;
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  direction: ltr; justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.detail-rating-label {
+  font-weight: 600; color: var(--text-light);
+  direction: rtl;
+  margin-left: auto;
+}
+.detail-rating .star-row { display: flex; gap: 4px; }
+.detail-rating .star {
+  font-size: 1.6rem; cursor: pointer;
+  color: var(--border);
+  transition: color 0.15s, transform 0.15s;
+  user-select: none;
+}
+.detail-rating .star.active { color: var(--gold); }
+.detail-rating .star:hover { transform: scale(1.15); }
+
+.cook-tracker {
+  display: flex; align-items: center; gap: 12px;
+  margin: 12px 0;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--teal-bg), #fff);
+  border: 1px solid var(--teal-soft);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+.cook-tracker .info {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.cook-tracker .count-label {
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.cook-tracker .count-value {
+  font-weight: 700; color: var(--teal-dark);
+  font-size: 1.05rem;
+}
+.cook-tracker .last-date {
+  font-size: 0.85rem; color: var(--text-light);
+}
+.btn-cook-today {
+  background: var(--teal); color: var(--white);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.2s;
+}
+.btn-cook-today:hover { background: var(--teal-light); transform: scale(1.03); }
+.btn-view-history {
+  font-size: 0.85rem;
+  color: var(--teal);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none; border: none;
+}
+
 .detail-meta {
   display: flex; gap: 16px; flex-wrap: wrap;
   margin: 16px 0 12px;
@@ -468,12 +605,18 @@ main {
   transition: all 0.2s;
 }
 .detail-tag:hover { background: var(--teal-bg); }
+.detail-tag.popular {
+  background: var(--popular); color: white;
+  border-color: var(--popular);
+  font-weight: 700;
+}
 .detail-section { margin-bottom: 28px; }
 .detail-section h3 {
   font-size: 1.2rem; color: var(--teal-dark);
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 2px solid var(--teal-soft);
+  display: flex; justify-content: space-between; align-items: center;
 }
 .detail-section .content {
   white-space: pre-wrap;
@@ -481,6 +624,93 @@ main {
   color: var(--text);
   font-size: 1.05rem;
 }
+
+.comments-list {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.comment-item {
+  background: var(--bg);
+  border-right: 3px solid var(--teal);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+}
+.comment-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 4px;
+  gap: 8px;
+}
+.comment-author {
+  font-weight: 600; color: var(--teal-dark);
+  font-size: 0.95rem;
+}
+.comment-date {
+  font-size: 0.8rem; color: var(--text-muted);
+}
+.comment-text {
+  color: var(--text); line-height: 1.5;
+  white-space: pre-wrap;
+}
+.comment-delete {
+  color: var(--danger);
+  cursor: pointer;
+  padding: 4px 6px;
+  background: none;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+.comment-delete:hover { background: var(--danger-light); }
+.add-comment-form {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--teal-bg);
+  border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.add-comment-form .form-row-inline {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+}
+.add-comment-form input, .add-comment-form textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--teal-soft);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  outline: none;
+  font-size: 0.95rem;
+}
+.add-comment-form input:focus, .add-comment-form textarea:focus {
+  border-color: var(--teal);
+}
+.add-comment-form textarea { resize: vertical; min-height: 60px; }
+.btn-add-comment {
+  background: var(--teal); color: white;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600; white-space: nowrap;
+}
+
+/* History list */
+.history-list {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.history-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-right: 3px solid var(--teal);
+}
+.history-date {
+  font-weight: 600; color: var(--text);
+}
+.history-delete {
+  color: var(--danger);
+  cursor: pointer;
+  padding: 4px 8px;
+  background: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+.history-delete:hover { background: var(--danger-light); }
 
 .menu-items { display: flex; flex-direction: column; }
 .menu-item {
@@ -545,6 +775,16 @@ main {
 .time-slider-group { display: flex; align-items: center; gap: 10px; }
 .time-slider-group input[type="number"] { width: 80px; }
 .time-slider-label { color: var(--text-light); font-size: 0.9rem; }
+.filter-star-row {
+  display: flex; gap: 6px;
+  direction: ltr; justify-content: flex-end;
+}
+.filter-star-row .f-star {
+  font-size: 1.8rem; cursor: pointer;
+  color: var(--border);
+  user-select: none;
+}
+.filter-star-row .f-star.active { color: var(--gold); }
 
 .confirm-modal { max-width: 400px; }
 .confirm-body { padding: 24px 20px; text-align: center; }
@@ -567,7 +807,9 @@ main {
 .hidden { display: none !important; }
 
 @media print {
-  header, .tabs, .active-filters, .fab, .detail-header, .toast, .results-info { display: none !important; }
+  header, .tabs, .active-filters, .fab, .detail-header, .toast,
+  .results-info, .last-cooked-banner, .cook-tracker, .add-comment-form,
+  .comment-delete { display: none !important; }
   body { background: white; }
   main { padding: 0; }
   .detail-img { max-height: 300px; }
@@ -600,6 +842,7 @@ main {
   </div>
 </header>
 
+<div class="last-cooked-banner hidden" id="lastCookedBanner"></div>
 <div class="tabs" id="tabs"></div>
 <div class="active-filters" id="activeFilters"></div>
 <main id="main"></main>
@@ -638,6 +881,17 @@ main {
       <div class="form-group">
         <label>פרק *</label>
         <select id="inputCategory" required></select>
+      </div>
+      <div class="form-group">
+        <label>דירוג (1-5 כוכבים)</label>
+        <div class="star-rating-input" id="starRatingInput">
+          <span class="clear-rating" id="clearRating">נקה</span>
+          <span class="star" data-value="5">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="1">★</span>
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -710,6 +964,20 @@ main {
   </div>
 </div>
 
+<div class="modal-overlay" id="modalHistory">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🗓️ היסטוריית בישול</h2>
+      <button class="icon-btn" data-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div id="historyList"></div>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modalMenu">
   <div class="modal">
     <div class="modal-header">
@@ -766,6 +1034,16 @@ main {
     </div>
     <div class="modal-body">
       <div class="filter-section">
+        <h4>⭐ דירוג מינימלי</h4>
+        <div class="filter-star-row" id="filterStarRow">
+          <span class="f-star" data-value="5">★</span>
+          <span class="f-star" data-value="4">★</span>
+          <span class="f-star" data-value="3">★</span>
+          <span class="f-star" data-value="2">★</span>
+          <span class="f-star" data-value="1">★</span>
+        </div>
+      </div>
+      <div class="filter-section">
         <h4>🏷️ תגיות</h4>
         <div class="filter-tags-list" id="filterTagsList"></div>
       </div>
@@ -809,19 +1087,27 @@ main {
 
 <script>
 const STORAGE_KEY = 'recipeBookData_v1';
+const POPULAR_THRESHOLD = 5;
 
 function loadData() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { version: 1, categories: [], recipes: [] };
+    if (!raw) return { version: 2, categories: [], recipes: [] };
     const data = JSON.parse(raw);
     if (!data.categories) data.categories = [];
     if (!data.recipes) data.recipes = [];
-    data.recipes.forEach(r => { if (!Array.isArray(r.tags)) r.tags = []; });
+    // Migration for v2: ensure all new fields exist
+    data.recipes.forEach(r => {
+      if (!Array.isArray(r.tags)) r.tags = [];
+      if (typeof r.rating !== 'number') r.rating = 0;
+      if (!Array.isArray(r.cookHistory)) r.cookHistory = [];
+      if (!Array.isArray(r.comments)) r.comments = [];
+    });
+    data.version = 2;
     return data;
   } catch (e) {
     console.error('Load error:', e);
-    return { version: 1, categories: [], recipes: [] };
+    return { version: 2, categories: [], recipes: [] };
   }
 }
 
@@ -840,10 +1126,11 @@ const state = {
   searchTerm: '',
   editingRecipeId: null,
   currentPhotoData: null,
+  currentRating: 0,
   viewingRecipeId: null,
   confirmCallback: null,
   currentTags: [],
-  activeFilters: { tags: [], maxPrepTime: null, maxCookTime: null },
+  activeFilters: { tags: [], maxPrepTime: null, maxCookTime: null, minRating: 0 },
   sortBy: 'dateNew'
 };
 
@@ -876,6 +1163,52 @@ function getAllTags() {
   return Array.from(tagSet).sort((a, b) => a.localeCompare(b, 'he'));
 }
 
+// ===== Date formatting in Hebrew =====
+function formatHebrewDate(timestamp) {
+  const d = new Date(timestamp);
+  const now = new Date();
+  const diff = Math.floor((now - d) / (1000 * 60 * 60 * 24));
+  if (diff === 0) return 'היום';
+  if (diff === 1) return 'אתמול';
+  if (diff < 7) return `לפני ${diff} ימים`;
+  if (diff < 30) {
+    const weeks = Math.floor(diff / 7);
+    return weeks === 1 ? 'לפני שבוע' : `לפני ${weeks} שבועות`;
+  }
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+function formatFullDate(timestamp) {
+  const d = new Date(timestamp);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+function isToday(timestamp) {
+  const d = new Date(timestamp);
+  const now = new Date();
+  return d.getFullYear() === now.getFullYear() &&
+         d.getMonth() === now.getMonth() &&
+         d.getDate() === now.getDate();
+}
+
+function isPopular(recipe) {
+  return Array.isArray(recipe.cookHistory) && recipe.cookHistory.length >= POPULAR_THRESHOLD;
+}
+
+function renderStars(rating, size = '') {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    html += `<span class="${i <= rating ? 'recipe-stars' : 'recipe-stars-empty'}">★</span>`;
+  }
+  return html;
+}
+
 async function resizeImage(file, maxSize = 900, quality = 0.78) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -896,6 +1229,37 @@ async function resizeImage(file, maxSize = 900, quality = 0.78) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+// ===== Last Cooked Banner =====
+function renderLastCookedBanner() {
+  const banner = document.getElementById('lastCookedBanner');
+  // Find most recent cook across all recipes
+  let latestRecipe = null;
+  let latestTime = 0;
+  state.data.recipes.forEach(r => {
+    if (Array.isArray(r.cookHistory) && r.cookHistory.length > 0) {
+      const maxTime = Math.max(...r.cookHistory);
+      if (maxTime > latestTime) {
+        latestTime = maxTime;
+        latestRecipe = r;
+      }
+    }
+  });
+  if (!latestRecipe) {
+    banner.classList.add('hidden');
+    return;
+  }
+  banner.classList.remove('hidden');
+  banner.innerHTML = `
+    <span style="font-size:1.5rem">🍽️</span>
+    <div>
+      <div class="label">בישלת לאחרונה:</div>
+      <div class="recipe-name">${escapeHtml(latestRecipe.name)}</div>
+    </div>
+    <span class="date">${formatHebrewDate(latestTime)}</span>
+  `;
+  banner.onclick = () => showRecipeDetail(latestRecipe.id);
 }
 
 function renderTabs() {
@@ -919,6 +1283,9 @@ function renderActiveFilters() {
   const bar = document.getElementById('activeFilters');
   const chips = [];
 
+  if (state.activeFilters.minRating > 0) {
+    chips.push(`<span class="filter-chip">⭐ ${state.activeFilters.minRating}+ כוכבים <span class="chip-remove" data-remove-rating>✕</span></span>`);
+  }
   state.activeFilters.tags.forEach(tag => {
     chips.push(`<span class="filter-chip">🏷️ ${escapeHtml(tag)} <span class="chip-remove" data-remove-tag="${escapeHtml(tag)}">✕</span></span>`);
   });
@@ -944,6 +1311,8 @@ function renderActiveFilters() {
     if (removePrep) removePrep.onclick = () => { state.activeFilters.maxPrepTime = null; updateFilterUI(); };
     const removeCook = bar.querySelector('[data-remove-cook]');
     if (removeCook) removeCook.onclick = () => { state.activeFilters.maxCookTime = null; updateFilterUI(); };
+    const removeRating = bar.querySelector('[data-remove-rating]');
+    if (removeRating) removeRating.onclick = () => { state.activeFilters.minRating = 0; updateFilterUI(); };
     document.getElementById('btnClearAll').onclick = clearAllFilters;
   } else {
     bar.classList.remove('visible');
@@ -952,7 +1321,8 @@ function renderActiveFilters() {
 
   const count = state.activeFilters.tags.length +
                 (state.activeFilters.maxPrepTime ? 1 : 0) +
-                (state.activeFilters.maxCookTime ? 1 : 0);
+                (state.activeFilters.maxCookTime ? 1 : 0) +
+                (state.activeFilters.minRating > 0 ? 1 : 0);
   const badge = document.getElementById('filterCount');
   if (count > 0) {
     badge.textContent = count;
@@ -968,7 +1338,7 @@ function updateFilterUI() {
 }
 
 function clearAllFilters() {
-  state.activeFilters = { tags: [], maxPrepTime: null, maxCookTime: null };
+  state.activeFilters = { tags: [], maxPrepTime: null, maxCookTime: null, minRating: 0 };
   updateFilterUI();
 }
 
@@ -996,6 +1366,10 @@ function getFilteredRecipes() {
     recipes = recipes.filter(r =>
       Array.isArray(r.tags) && state.activeFilters.tags.every(t => r.tags.includes(t))
     );
+  }
+
+  if (state.activeFilters.minRating > 0) {
+    recipes = recipes.filter(r => (r.rating || 0) >= state.activeFilters.minRating);
   }
 
   if (state.activeFilters.maxPrepTime) {
@@ -1028,6 +1402,23 @@ function getFilteredRecipes() {
         return (b.createdAt || 0) - (a.createdAt || 0);
       });
       break;
+    case 'ratingHigh':
+      recipes.sort((a, b) => (b.rating || 0) - (a.rating || 0) || (b.createdAt || 0) - (a.createdAt || 0));
+      break;
+    case 'mostCooked':
+      recipes.sort((a, b) => {
+        const ca = Array.isArray(a.cookHistory) ? a.cookHistory.length : 0;
+        const cb = Array.isArray(b.cookHistory) ? b.cookHistory.length : 0;
+        return cb - ca || (b.createdAt || 0) - (a.createdAt || 0);
+      });
+      break;
+    case 'lastCooked':
+      recipes.sort((a, b) => {
+        const la = Array.isArray(a.cookHistory) && a.cookHistory.length ? Math.max(...a.cookHistory) : 0;
+        const lb = Array.isArray(b.cookHistory) && b.cookHistory.length ? Math.max(...b.cookHistory) : 0;
+        return lb - la || (b.createdAt || 0) - (a.createdAt || 0);
+      });
+      break;
   }
 
   return recipes;
@@ -1058,6 +1449,9 @@ function renderRecipes() {
         <option value="dateOld" ${state.sortBy === 'dateOld' ? 'selected' : ''}>📅 ישנים ראשונים</option>
         <option value="alpha" ${state.sortBy === 'alpha' ? 'selected' : ''}>🔤 לפי א-ב</option>
         <option value="favFirst" ${state.sortBy === 'favFirst' ? 'selected' : ''}>⭐ מועדפים ראשונים</option>
+        <option value="ratingHigh" ${state.sortBy === 'ratingHigh' ? 'selected' : ''}>🌟 דירוג גבוה ראשון</option>
+        <option value="mostCooked" ${state.sortBy === 'mostCooked' ? 'selected' : ''}>🔥 הכי מבושלים</option>
+        <option value="lastCooked" ${state.sortBy === 'lastCooked' ? 'selected' : ''}>🗓️ בושלו לאחרונה</option>
       </select>
     </div>`;
 
@@ -1065,7 +1459,7 @@ function renderRecipes() {
     let msg = 'אין מתכונים עדיין';
     let emoji = '🍳';
     if (state.searchTerm) { msg = 'לא נמצאו מתכונים לחיפוש זה'; emoji = '🔍'; }
-    else if (state.activeFilters.tags.length > 0 || state.activeFilters.maxPrepTime || state.activeFilters.maxCookTime) {
+    else if (state.activeFilters.tags.length > 0 || state.activeFilters.maxPrepTime || state.activeFilters.maxCookTime || state.activeFilters.minRating > 0) {
       msg = 'לא נמצאו מתכונים התואמים לסינון'; emoji = '🔍';
     }
     else if (state.currentFilter === 'favorites') { msg = 'עדיין אין מתכונים מועדפים'; emoji = '⭐'; }
@@ -1088,10 +1482,31 @@ function renderRecipes() {
     if (r.prepTime) timesParts.push(`⏱️ ${escapeHtml(r.prepTime)}`);
     if (r.cookTime) timesParts.push(`🔥 ${escapeHtml(r.cookTime)}`);
     const times = timesParts.length ? `<div class="recipe-times">${timesParts.join(' · ')}</div>` : '';
-    const favBadge = r.favorite ? `
-      <div class="recipe-fav-badge">
-        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-      </div>` : '';
+
+    const popular = isPopular(r);
+    let badges = '<div class="recipe-badges">';
+    if (r.favorite) {
+      badges += `<div class="recipe-fav-badge"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>`;
+    }
+    if (popular) {
+      badges += `<div class="recipe-popular-badge" title="פופולרי">🔥</div>`;
+    }
+    badges += '</div>';
+
+    // Rating row
+    const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
+    let ratingRow = '';
+    if (r.rating > 0 || cookCount > 0) {
+      ratingRow = '<div class="recipe-rating-row">';
+      if (r.rating > 0) {
+        ratingRow += `<span>${renderStars(r.rating)}</span>`;
+      }
+      if (cookCount > 0) {
+        ratingRow += `<span class="recipe-cooked-count">🍽️ ${cookCount}</span>`;
+      }
+      ratingRow += '</div>';
+    }
+
     let tagsHtml = '';
     if (Array.isArray(r.tags) && r.tags.length > 0) {
       const shownTags = r.tags.slice(0, 3);
@@ -1100,12 +1515,14 @@ function renderRecipes() {
         (r.tags.length > 3 ? `<span class="recipe-card-tag">+${r.tags.length - 3}</span>` : '') +
         '</div>';
     }
+
     html += `
       <div class="recipe-card" data-id="${r.id}">
-        ${favBadge}
+        ${badges}
         ${img}
         <div class="recipe-info">
           <div class="recipe-name">${escapeHtml(r.name)}</div>
+          ${ratingRow}
           ${times}
           ${tagsHtml}
         </div>
@@ -1145,17 +1562,83 @@ function showRecipeDetail(id) {
   if (r.cookTime) meta.push(`<span>🔥 בישול: ${escapeHtml(r.cookTime)}</span>`);
   if (r.servings) meta.push(`<span>🍽️ ${escapeHtml(r.servings)}</span>`);
 
+  // Rating stars (interactive)
+  const rating = r.rating || 0;
+  let starsHtml = '<div class="star-row">';
+  for (let i = 5; i >= 1; i--) {
+    starsHtml += `<span class="star ${i <= rating ? 'active' : ''}" data-rating="${i}">★</span>`;
+  }
+  starsHtml += '</div>';
+  const ratingHtml = `
+    <div class="detail-rating">
+      <span class="detail-rating-label">דירוג:</span>
+      ${starsHtml}
+    </div>`;
+
+  // Cook tracker
+  const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
+  const lastCookTime = cookCount > 0 ? Math.max(...r.cookHistory) : null;
+  const cookedToday = lastCookTime && isToday(lastCookTime);
+  const popularTag = isPopular(r) ? '<div class="detail-tag popular" style="margin-right:8px">🔥 פופולרי</div>' : '';
+
+  const cookTracker = `
+    <div class="cook-tracker">
+      <div class="info">
+        <div class="count-value">🍽️ בישלתי ${cookCount} ${cookCount === 1 ? 'פעם' : 'פעמים'}</div>
+        ${lastCookTime ? `<div class="last-date">אחרונה: ${formatHebrewDate(lastCookTime)}</div>` : '<div class="last-date">עוד לא בושל</div>'}
+      </div>
+      ${cookCount > 0 ? '<button class="btn-view-history" id="btnViewHistory">הצג היסטוריה</button>' : ''}
+      <button class="btn-cook-today" id="btnCookToday">
+        ${cookedToday ? '✅ בישלתי היום' : '🍳 בישלתי היום'}
+      </button>
+    </div>`;
+
   let tagsHtml = '';
-  if (Array.isArray(r.tags) && r.tags.length > 0) {
-    tagsHtml = '<div class="detail-tags">' +
-      r.tags.map(t => `<span class="detail-tag" data-tag="${escapeHtml(t)}">🏷️ ${escapeHtml(t)}</span>`).join('') +
-      '</div>';
+  if ((Array.isArray(r.tags) && r.tags.length > 0) || isPopular(r)) {
+    tagsHtml = '<div class="detail-tags">';
+    if (isPopular(r)) {
+      tagsHtml += '<span class="detail-tag popular">🔥 פופולרי</span>';
+    }
+    if (Array.isArray(r.tags)) {
+      tagsHtml += r.tags.map(t => `<span class="detail-tag" data-tag="${escapeHtml(t)}">🏷️ ${escapeHtml(t)}</span>`).join('');
+    }
+    tagsHtml += '</div>';
   }
 
   const sections = [];
   if (r.ingredients) sections.push(`<div class="detail-section"><h3>מצרכים</h3><div class="content">${escapeHtml(r.ingredients)}</div></div>`);
   if (r.instructions) sections.push(`<div class="detail-section"><h3>אופן הכנה</h3><div class="content">${escapeHtml(r.instructions)}</div></div>`);
   if (r.notes) sections.push(`<div class="detail-section"><h3>הערות</h3><div class="content">${escapeHtml(r.notes)}</div></div>`);
+
+  // Comments section
+  const comments = Array.isArray(r.comments) ? r.comments : [];
+  let commentsHtml = `<div class="detail-section"><h3>💬 תגובות משפחה (${comments.length})</h3>`;
+  if (comments.length === 0) {
+    commentsHtml += '<p style="color:var(--text-muted);padding:8px 0">אין תגובות עדיין. הוסיפי את הראשונה 👇</p>';
+  } else {
+    commentsHtml += '<div class="comments-list">';
+    comments.forEach((c, idx) => {
+      commentsHtml += `
+        <div class="comment-item">
+          <div class="comment-header">
+            <span class="comment-author">${escapeHtml(c.author || 'אנונימי')}</span>
+            <span class="comment-date">${formatHebrewDate(c.date)}</span>
+            <button class="comment-delete" data-comment-idx="${idx}">מחק</button>
+          </div>
+          <div class="comment-text">${escapeHtml(c.text)}</div>
+        </div>`;
+    });
+    commentsHtml += '</div>';
+  }
+  commentsHtml += `
+    <div class="add-comment-form">
+      <div class="form-row-inline">
+        <input type="text" id="commentAuthor" placeholder="שם (לדוגמה: אבא, הילדים...)">
+        <button class="btn-add-comment" id="btnAddComment">➕ הוסף</button>
+      </div>
+      <textarea id="commentText" placeholder="מה חשבו על המתכון?"></textarea>
+    </div>
+    </div>`;
 
   const body = document.getElementById('detailBody');
   body.innerHTML = `
@@ -1165,12 +1648,49 @@ function showRecipeDetail(id) {
         ${escapeHtml(r.name)}
         ${r.favorite ? '<span class="fav-star">⭐</span>' : ''}
       </div>
+      ${ratingHtml}
+      ${cookTracker}
       ${meta.length ? `<div class="detail-meta">${meta.join('')}</div>` : ''}
       ${tagsHtml}
       ${sections.join('')}
+      ${commentsHtml}
     </div>`;
 
-  body.querySelectorAll('.detail-tag').forEach(el => {
+  // Rating stars click
+  body.querySelectorAll('.detail-rating .star').forEach(el => {
+    el.onclick = () => {
+      const newRating = parseInt(el.dataset.rating, 10);
+      // Toggle off if same rating
+      r.rating = (r.rating === newRating) ? 0 : newRating;
+      saveData();
+      showToast(r.rating > 0 ? `דורג ${r.rating} כוכבים` : 'הדירוג הוסר');
+      showRecipeDetail(id); // re-render
+      renderRecipes();
+    };
+  });
+
+  // Cook today button
+  const btnCook = document.getElementById('btnCookToday');
+  if (btnCook) {
+    btnCook.onclick = () => {
+      if (!Array.isArray(r.cookHistory)) r.cookHistory = [];
+      r.cookHistory.push(Date.now());
+      saveData();
+      showToast(`נרשם! בישלת ${r.cookHistory.length} ${r.cookHistory.length === 1 ? 'פעם' : 'פעמים'}`);
+      showRecipeDetail(id);
+      renderRecipes();
+      renderLastCookedBanner();
+    };
+  }
+
+  // View history button
+  const btnHistory = document.getElementById('btnViewHistory');
+  if (btnHistory) {
+    btnHistory.onclick = () => showHistory(id);
+  }
+
+  // Clickable tags
+  body.querySelectorAll('.detail-tag[data-tag]').forEach(el => {
     el.onclick = () => {
       const tag = el.dataset.tag;
       closeModal('modalRecipeDetail');
@@ -1182,9 +1702,90 @@ function showRecipeDetail(id) {
     };
   });
 
+  // Add comment
+  const btnAddComment = document.getElementById('btnAddComment');
+  if (btnAddComment) {
+    btnAddComment.onclick = () => {
+      const author = document.getElementById('commentAuthor').value.trim();
+      const text = document.getElementById('commentText').value.trim();
+      if (!text) { showToast('נא להזין תגובה'); return; }
+      if (!Array.isArray(r.comments)) r.comments = [];
+      r.comments.push({
+        id: uid(),
+        author: author || 'אנונימי',
+        text,
+        date: Date.now()
+      });
+      saveData();
+      showToast('התגובה נוספה');
+      showRecipeDetail(id);
+    };
+  }
+
+  // Delete comment
+  body.querySelectorAll('.comment-delete').forEach(el => {
+    el.onclick = () => {
+      const idx = parseInt(el.dataset.commentIdx, 10);
+      showConfirm({
+        emoji: '🗑️',
+        title: 'למחוק את התגובה?',
+        message: '',
+        onYes: () => {
+          r.comments.splice(idx, 1);
+          saveData();
+          showRecipeDetail(id);
+          showToast('התגובה נמחקה');
+        }
+      });
+    };
+  });
+
   openModal('modalRecipeDetail');
 }
 
+// ===== History Modal =====
+function showHistory(recipeId) {
+  const r = state.data.recipes.find(x => x.id === recipeId);
+  if (!r || !Array.isArray(r.cookHistory)) return;
+  const sorted = [...r.cookHistory].sort((a, b) => b - a);
+  const list = document.getElementById('historyList');
+  if (sorted.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:16px">עדיין לא בישלת את המתכון הזה</p>';
+  } else {
+    list.innerHTML = `
+      <p style="margin-bottom:12px;color:var(--text-light)">בישלת את <strong>${escapeHtml(r.name)}</strong> סה"כ ${sorted.length} ${sorted.length === 1 ? 'פעם' : 'פעמים'}:</p>
+      <div class="history-list">
+        ${sorted.map((t, idx) => `
+          <div class="history-item">
+            <span class="history-date">🗓️ ${formatFullDate(t)} <span style="color:var(--text-muted);font-weight:normal">(${formatHebrewDate(t)})</span></span>
+            <button class="history-delete" data-timestamp="${t}">מחק</button>
+          </div>
+        `).join('')}
+      </div>`;
+    list.querySelectorAll('.history-delete').forEach(el => {
+      el.onclick = () => {
+        const timestamp = parseInt(el.dataset.timestamp, 10);
+        showConfirm({
+          emoji: '🗑️',
+          title: 'למחוק את הרישום?',
+          message: formatFullDate(timestamp),
+          onYes: () => {
+            r.cookHistory = r.cookHistory.filter(t => t !== timestamp);
+            saveData();
+            showHistory(recipeId);
+            showRecipeDetail(recipeId);
+            renderRecipes();
+            renderLastCookedBanner();
+            showToast('הרישום נמחק');
+          }
+        });
+      };
+    });
+  }
+  openModal('modalHistory');
+}
+
+// ===== Form Tags =====
 function renderFormTags() {
   const container = document.getElementById('tagsContainer');
   const input = document.getElementById('tagsInput');
@@ -1241,10 +1842,20 @@ function renderTagSuggestions() {
   });
 }
 
+// ===== Star rating in form =====
+function renderFormStars() {
+  const stars = document.querySelectorAll('#starRatingInput .star');
+  stars.forEach(el => {
+    const val = parseInt(el.dataset.value, 10);
+    el.classList.toggle('active', val <= state.currentRating);
+  });
+}
+
 function openRecipeForm(id = null) {
   state.editingRecipeId = id;
   state.currentPhotoData = null;
   state.currentTags = [];
+  state.currentRating = 0;
 
   const catSelect = document.getElementById('inputCategory');
   catSelect.innerHTML = state.data.categories.map(c =>
@@ -1265,6 +1876,7 @@ function openRecipeForm(id = null) {
     document.getElementById('inputNotes').value = r.notes || '';
     document.getElementById('inputFavorite').checked = !!r.favorite;
     state.currentTags = Array.isArray(r.tags) ? [...r.tags] : [];
+    state.currentRating = r.rating || 0;
     if (r.image) {
       state.currentPhotoData = r.image;
       document.getElementById('photoPreview').src = r.image;
@@ -1292,6 +1904,7 @@ function openRecipeForm(id = null) {
   document.getElementById('tagsInput').value = '';
   renderFormTags();
   renderTagSuggestions();
+  renderFormStars();
   openModal('modalRecipeForm');
 }
 
@@ -1327,7 +1940,8 @@ function saveRecipe() {
     notes: document.getElementById('inputNotes').value.trim(),
     favorite: document.getElementById('inputFavorite').checked,
     image: state.currentPhotoData || null,
-    tags: [...state.currentTags]
+    tags: [...state.currentTags],
+    rating: state.currentRating
   };
 
   if (state.editingRecipeId) {
@@ -1340,6 +1954,8 @@ function saveRecipe() {
     state.data.recipes.push({
       id: uid(),
       ...recipeData,
+      cookHistory: [],
+      comments: [],
       createdAt: Date.now()
     });
     showToast('המתכון נוסף');
@@ -1348,6 +1964,7 @@ function saveRecipe() {
   saveData();
   closeModal('modalRecipeForm');
   renderRecipes();
+  renderLastCookedBanner();
 }
 
 function deleteCurrentRecipe() {
@@ -1362,6 +1979,7 @@ function deleteCurrentRecipe() {
       saveData();
       closeModal('modalRecipeDetail');
       renderRecipes();
+      renderLastCookedBanner();
       showToast('המתכון נמחק');
     }
   });
@@ -1371,6 +1989,7 @@ function shareRecipe() {
   const r = state.data.recipes.find(x => x.id === state.viewingRecipeId);
   if (!r) return;
   let text = `📖 ${r.name}\n\n`;
+  if (r.rating > 0) text += `${'⭐'.repeat(r.rating)}\n`;
   if (r.prepTime) text += `⏱️ זמן הכנה: ${r.prepTime}\n`;
   if (r.cookTime) text += `🔥 זמן בישול: ${r.cookTime}\n`;
   if (r.servings) text += `🍽️ ${r.servings}\n`;
@@ -1480,6 +2099,7 @@ function deleteCategory(id) {
         renderCategoryList();
         renderTabs();
         renderRecipes();
+        renderLastCookedBanner();
         showToast('הפרק נמחק');
       }
     });
@@ -1513,6 +2133,12 @@ function moveCategory(id, delta) {
 }
 
 function openFilterModal() {
+  // Rating stars
+  document.querySelectorAll('#filterStarRow .f-star').forEach(el => {
+    const val = parseInt(el.dataset.value, 10);
+    el.classList.toggle('active', val <= state.activeFilters.minRating);
+  });
+
   const allTags = getAllTags();
   const list = document.getElementById('filterTagsList');
   if (allTags.length === 0) {
@@ -1537,6 +2163,7 @@ function applyFilterFromModal() {
   });
   const maxPrep = parseInt(document.getElementById('filterMaxPrepTime').value, 10);
   const maxCook = parseInt(document.getElementById('filterMaxCookTime').value, 10);
+  // Read minRating from state (set by star click handlers)
   state.activeFilters.tags = selectedTags;
   state.activeFilters.maxPrepTime = !isNaN(maxPrep) && maxPrep > 0 ? maxPrep : null;
   state.activeFilters.maxCookTime = !isNaN(maxCook) && maxCook > 0 ? maxCook : null;
@@ -1546,6 +2173,8 @@ function applyFilterFromModal() {
 
 function resetFilterModal() {
   document.querySelectorAll('#filterTagsList .filter-tag.selected').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('#filterStarRow .f-star').forEach(el => el.classList.remove('active'));
+  state.activeFilters.minRating = 0;
   document.getElementById('filterMaxPrepTime').value = '';
   document.getElementById('filterMaxCookTime').value = '';
 }
@@ -1574,13 +2203,20 @@ function importData(file) {
         title: 'לייבא את הגיבוי?',
         message: `הקובץ מכיל ${data.categories.length} פרקים ו-${data.recipes.length} מתכונים. הנתונים הקיימים יוחלפו.`,
         onYes: () => {
-          data.recipes.forEach(r => { if (!Array.isArray(r.tags)) r.tags = []; });
+          // Migration for new fields
+          data.recipes.forEach(r => {
+            if (!Array.isArray(r.tags)) r.tags = [];
+            if (typeof r.rating !== 'number') r.rating = 0;
+            if (!Array.isArray(r.cookHistory)) r.cookHistory = [];
+            if (!Array.isArray(r.comments)) r.comments = [];
+          });
           state.data = data;
           state.currentFilter = 'all';
           clearAllFilters();
           saveData();
           renderTabs();
           renderRecipes();
+          renderLastCookedBanner();
           closeModal('modalMenu');
           showToast('הגיבוי יובא בהצלחה');
         }
@@ -1611,6 +2247,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnApplyFilter').addEventListener('click', applyFilterFromModal);
   document.getElementById('btnResetFilter').addEventListener('click', resetFilterModal);
 
+  // Filter modal star clicks
+  document.querySelectorAll('#filterStarRow .f-star').forEach(el => {
+    el.addEventListener('click', () => {
+      const val = parseInt(el.dataset.value, 10);
+      // If clicking the currently-selected value, clear; else set to val
+      state.activeFilters.minRating = (state.activeFilters.minRating === val) ? 0 : val;
+      document.querySelectorAll('#filterStarRow .f-star').forEach(s => {
+        const v = parseInt(s.dataset.value, 10);
+        s.classList.toggle('active', v <= state.activeFilters.minRating);
+      });
+    });
+  });
+
   document.getElementById('btnAddRecipe').addEventListener('click', () => {
     if (state.data.categories.length === 0) {
       showToast('צריך ליצור פרק לפני הוספת מתכון');
@@ -1635,6 +2284,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('btnSaveRecipe').addEventListener('click', saveRecipe);
+
+  // Form star rating
+  document.querySelectorAll('#starRatingInput .star').forEach(el => {
+    el.addEventListener('click', () => {
+      const val = parseInt(el.dataset.value, 10);
+      state.currentRating = (state.currentRating === val) ? 0 : val;
+      renderFormStars();
+    });
+  });
+  document.getElementById('clearRating').addEventListener('click', () => {
+    state.currentRating = 0;
+    renderFormStars();
+  });
 
   const tagsInput = document.getElementById('tagsInput');
   tagsInput.addEventListener('keydown', (e) => {
@@ -1701,6 +2363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderTabs();
   renderActiveFilters();
+  renderLastCookedBanner();
   renderRecipes();
 });
 
