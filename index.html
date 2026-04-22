@@ -104,16 +104,9 @@ header {
   box-shadow: var(--shadow);
 }
 .last-cooked-banner:hover { transform: translateX(-2px); }
-.last-cooked-banner .label {
-  font-size: 0.8rem; color: var(--text-muted);
-}
-.last-cooked-banner .recipe-name {
-  font-weight: 600; color: var(--teal-dark);
-}
-.last-cooked-banner .date {
-  font-size: 0.85rem; color: var(--text-light);
-  margin-right: auto;
-}
+.last-cooked-banner .label { font-size: 0.8rem; color: var(--text-muted); }
+.last-cooked-banner .recipe-name { font-weight: 600; color: var(--teal-dark); }
+.last-cooked-banner .date { font-size: 0.85rem; color: var(--text-light); margin-right: auto; }
 
 .tabs {
   background: var(--white); padding: 10px 12px;
@@ -175,9 +168,7 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--white);
-  font-size: 0.9rem;
-  color: var(--text);
-  cursor: pointer;
+  font-size: 0.9rem; color: var(--text); cursor: pointer;
 }
 
 .recipe-grid {
@@ -224,39 +215,23 @@ main {
 }
 .recipe-rating-row {
   display: flex; align-items: center; gap: 8px;
-  margin-bottom: 4px;
-  font-size: 0.85rem;
+  margin-bottom: 4px; font-size: 0.85rem;
 }
-.recipe-stars {
-  color: var(--gold);
-  letter-spacing: -1px;
-}
+.recipe-stars { color: var(--gold); letter-spacing: -1px; }
 .recipe-stars-empty { color: var(--border); }
-.recipe-cooked-count {
-  color: var(--teal);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
+.recipe-cooked-count { color: var(--teal); font-size: 0.8rem; font-weight: 600; }
 .recipe-times {
   font-size: 0.8rem; color: var(--text-muted);
-  display: flex; gap: 10px; flex-wrap: wrap;
-  margin-bottom: 4px;
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;
 }
-.recipe-card-tags {
-  display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;
-}
+.recipe-card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
 .recipe-card-tag {
   font-size: 0.7rem;
-  background: var(--teal-bg);
-  color: var(--teal-dark);
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-weight: 500;
+  background: var(--teal-bg); color: var(--teal-dark);
+  padding: 2px 8px; border-radius: 10px; font-weight: 500;
 }
 .recipe-card-tag.popular {
-  background: var(--popular);
-  color: white;
-  font-weight: 700;
+  background: var(--popular); color: white; font-weight: 700;
 }
 .recipe-badges {
   position: absolute; top: 8px; left: 8px;
@@ -297,8 +272,7 @@ main {
   background: var(--teal); color: var(--white);
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(44,122,123,0.4);
-  z-index: 50;
-  transition: transform 0.2s;
+  z-index: 50; transition: transform 0.2s;
 }
 .fab:hover, .fab:active { transform: scale(1.05); }
 .fab svg { width: 28px; height: 28px; }
@@ -351,8 +325,7 @@ main {
   width: 100%; padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--white);
-  outline: none;
+  background: var(--white); outline: none;
   transition: border-color 0.2s;
 }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
@@ -366,8 +339,7 @@ main {
 .tags-container {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 8px;
-  background: var(--white);
+  padding: 8px; background: var(--white);
   min-height: 46px;
   display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
 }
@@ -376,57 +348,41 @@ main {
   box-shadow: 0 0 0 3px rgba(44,122,123,0.1);
 }
 .tag-pill {
-  background: var(--teal-bg);
-  color: var(--teal-dark);
+  background: var(--teal-bg); color: var(--teal-dark);
   padding: 4px 4px 4px 10px;
-  border-radius: 14px;
-  font-size: 0.9rem;
+  border-radius: 14px; font-size: 0.9rem;
   display: inline-flex; align-items: center; gap: 4px;
   border: 1px solid var(--teal-soft);
 }
 .tag-pill .tag-remove {
   width: 20px; height: 20px;
   border-radius: 50%;
-  background: var(--teal);
-  color: white;
+  background: var(--teal); color: white;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem;
-  cursor: pointer;
-  line-height: 1;
+  font-size: 0.8rem; cursor: pointer; line-height: 1;
 }
 .tags-input {
-  border: none !important;
-  outline: none !important;
+  border: none !important; outline: none !important;
   flex: 1; min-width: 120px;
   padding: 4px !important;
   box-shadow: none !important;
   font-size: 0.95rem;
 }
-.tag-suggestions {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-top: 8px;
-}
+.tag-suggestions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .tag-suggestion {
-  background: var(--bg);
-  color: var(--text-light);
-  padding: 4px 10px;
-  border-radius: 14px;
+  background: var(--bg); color: var(--text-light);
+  padding: 4px 10px; border-radius: 14px;
   font-size: 0.85rem;
   border: 1px dashed var(--border);
-  cursor: pointer;
-  transition: all 0.2s;
+  cursor: pointer; transition: all 0.2s;
 }
 .tag-suggestion:hover {
-  background: var(--teal-bg);
-  color: var(--teal-dark);
-  border-color: var(--teal-soft);
-  border-style: solid;
+  background: var(--teal-bg); color: var(--teal-dark);
+  border-color: var(--teal-soft); border-style: solid;
 }
 .tag-suggestions-label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 8px;
-  margin-bottom: 4px;
+  font-size: 0.8rem; color: var(--text-muted);
+  margin-top: 8px; margin-bottom: 4px;
 }
 
 .photo-upload {
@@ -436,8 +392,7 @@ main {
   border: 2px dashed var(--teal-light);
   border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  overflow: hidden;
+  cursor: pointer; overflow: hidden;
 }
 .photo-upload input { display: none; }
 .photo-upload img { width: 100%; height: 100%; object-fit: cover; }
@@ -461,8 +416,7 @@ main {
 
 .star-rating-input {
   display: flex; gap: 4px; direction: ltr; justify-content: flex-end;
-  padding: 8px; background: var(--bg);
-  border-radius: var(--radius-sm);
+  padding: 8px; background: var(--bg); border-radius: var(--radius-sm);
 }
 .star-rating-input .star {
   font-size: 2rem; cursor: pointer;
@@ -473,13 +427,9 @@ main {
 .star-rating-input .star.active { color: var(--gold); }
 .star-rating-input .star:hover { transform: scale(1.15); }
 .star-rating-input .clear-rating {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  text-decoration: underline;
-  align-self: center;
-  margin-left: 10px;
-  cursor: pointer;
-  direction: rtl;
+  font-size: 0.85rem; color: var(--text-muted);
+  text-decoration: underline; align-self: center;
+  margin-left: 10px; cursor: pointer; direction: rtl;
 }
 
 .detail-header {
@@ -490,25 +440,19 @@ main {
 .detail-header .actions { display: flex; gap: 4px; }
 .detail-body { padding: 0; }
 
-/* ====== IMAGE SIZE - MORE BALANCED ====== */
 .detail-img-wrapper {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 16px 16px 0;
+  width: 100%; max-width: 700px;
+  margin: 0 auto; padding: 16px 16px 0;
 }
 .detail-img {
-  width: 100%;
-  max-height: 35vh;
+  width: 100%; max-height: 35vh;
   object-fit: cover;
   background: linear-gradient(135deg, var(--teal-soft), var(--teal-bg));
-  display: block;
-  border-radius: var(--radius);
+  display: block; border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 .detail-img-placeholder {
-  width: 100%;
-  height: 220px;
+  width: 100%; height: 220px;
   background: linear-gradient(135deg, var(--teal-soft), var(--teal-bg));
   display: flex; align-items: center; justify-content: center;
   font-size: 4rem; color: var(--teal);
@@ -521,8 +465,7 @@ main {
 
 .detail-content {
   padding: 20px 24px 24px;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 900px; margin: 0 auto;
 }
 .detail-title {
   font-size: 1.6rem; font-weight: 700;
@@ -536,19 +479,37 @@ main {
 }
 .fav-star { color: var(--teal); font-size: 1.5rem; }
 
+/* ===== START COOKING BUTTON ===== */
+.btn-start-cooking {
+  background: linear-gradient(135deg, var(--teal-light), var(--teal));
+  color: white;
+  padding: 16px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; width: 100%;
+  margin: 12px 0;
+  box-shadow: 0 4px 12px rgba(44,122,123,0.35);
+  transition: all 0.2s;
+}
+.btn-start-cooking:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(44,122,123,0.45);
+}
+.btn-start-cooking:active { transform: translateY(0); }
+
 .detail-rating {
   display: flex; align-items: center; gap: 10px;
   margin: 12px 0;
-  padding: 12px;
-  background: var(--bg);
+  padding: 12px; background: var(--bg);
   border-radius: var(--radius-sm);
   direction: ltr; justify-content: flex-end;
   flex-wrap: wrap;
 }
 .detail-rating-label {
   font-weight: 600; color: var(--text-light);
-  direction: rtl;
-  margin-left: auto;
+  direction: rtl; margin-left: auto;
 }
 .detail-rating .star-row { display: flex; gap: 4px; }
 .detail-rating .star {
@@ -560,29 +521,20 @@ main {
 .detail-rating .star.active { color: var(--gold); }
 .detail-rating .star:hover { transform: scale(1.15); }
 
-/* ====== COOK TRACKER - BUTTON ON TOP NOW ====== */
 .cook-tracker {
-  margin: 12px 0;
-  padding: 16px;
+  margin: 12px 0; padding: 16px;
   background: linear-gradient(135deg, var(--teal-bg), #fff);
   border: 1px solid var(--teal-soft);
   border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: flex; flex-direction: column; gap: 12px;
 }
 .btn-cook-today {
-  background: var(--teal);
-  color: var(--white);
+  background: var(--teal); color: var(--white);
   padding: 14px 18px;
   border-radius: var(--radius-sm);
-  font-weight: 700;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
+  font-weight: 700; font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; width: 100%;
   transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(44,122,123,0.3);
 }
@@ -591,43 +543,24 @@ main {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(44,122,123,0.4);
 }
-.btn-cook-today.done {
-  background: var(--teal-dark);
-}
+.btn-cook-today.done { background: var(--teal-dark); }
 .cook-tracker .info-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
 }
-.cook-tracker .count-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+.cook-tracker .count-info { display: flex; flex-direction: column; gap: 2px; }
 .cook-tracker .count-value {
-  font-weight: 700;
-  color: var(--teal-dark);
-  font-size: 1rem;
+  font-weight: 700; color: var(--teal-dark); font-size: 1rem;
 }
-.cook-tracker .last-date {
-  font-size: 0.85rem;
-  color: var(--text-light);
-}
+.cook-tracker .last-date { font-size: 0.85rem; color: var(--text-light); }
 .btn-view-history {
-  font-size: 0.9rem;
-  color: var(--teal);
-  text-decoration: underline;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-weight: 600;
-  padding: 4px 8px;
+  font-size: 0.9rem; color: var(--teal);
+  text-decoration: underline; cursor: pointer;
+  background: none; border: none;
+  font-weight: 600; padding: 4px 8px;
 }
 .btn-view-history:hover {
-  background: var(--teal-bg);
-  border-radius: var(--radius-sm);
+  background: var(--teal-bg); border-radius: var(--radius-sm);
 }
 
 .detail-meta {
@@ -643,20 +576,16 @@ main {
   margin-bottom: 24px;
 }
 .detail-tag {
-  background: var(--white);
-  color: var(--teal-dark);
-  padding: 4px 12px;
-  border-radius: 14px;
+  background: var(--white); color: var(--teal-dark);
+  padding: 4px 12px; border-radius: 14px;
   font-size: 0.9rem;
   border: 1px solid var(--teal-soft);
-  cursor: pointer;
-  transition: all 0.2s;
+  cursor: pointer; transition: all 0.2s;
 }
 .detail-tag:hover { background: var(--teal-bg); }
 .detail-tag.popular {
   background: var(--popular); color: white;
-  border-color: var(--popular);
-  font-weight: 700;
+  border-color: var(--popular); font-weight: 700;
 }
 .detail-section { margin-bottom: 28px; }
 .detail-section h3 {
@@ -669,13 +598,10 @@ main {
 .detail-section .content {
   white-space: pre-wrap;
   line-height: 1.8;
-  color: var(--text);
-  font-size: 1.05rem;
+  color: var(--text); font-size: 1.05rem;
 }
 
-.comments-list {
-  display: flex; flex-direction: column; gap: 10px;
-}
+.comments-list { display: flex; flex-direction: column; gap: 10px; }
 .comment-item {
   background: var(--bg);
   border-right: 3px solid var(--teal);
@@ -684,32 +610,24 @@ main {
 }
 .comment-header {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 4px;
-  gap: 8px;
+  margin-bottom: 4px; gap: 8px;
 }
 .comment-author {
-  font-weight: 600; color: var(--teal-dark);
-  font-size: 0.95rem;
+  font-weight: 600; color: var(--teal-dark); font-size: 0.95rem;
 }
-.comment-date {
-  font-size: 0.8rem; color: var(--text-muted);
-}
+.comment-date { font-size: 0.8rem; color: var(--text-muted); }
 .comment-text {
   color: var(--text); line-height: 1.5;
   white-space: pre-wrap;
 }
 .comment-delete {
-  color: var(--danger);
-  cursor: pointer;
-  padding: 4px 6px;
-  background: none;
-  font-size: 0.8rem;
-  border-radius: 4px;
+  color: var(--danger); cursor: pointer;
+  padding: 4px 6px; background: none;
+  font-size: 0.8rem; border-radius: 4px;
 }
 .comment-delete:hover { background: var(--danger-light); }
 .add-comment-form {
-  margin-top: 12px;
-  padding: 12px;
+  margin-top: 12px; padding: 12px;
   background: var(--teal-bg);
   border-radius: var(--radius-sm);
   display: flex; flex-direction: column; gap: 8px;
@@ -721,8 +639,7 @@ main {
   padding: 8px 10px;
   border: 1px solid var(--teal-soft);
   border-radius: var(--radius-sm);
-  background: var(--white);
-  outline: none;
+  background: var(--white); outline: none;
   font-size: 0.95rem;
 }
 .add-comment-form input:focus, .add-comment-form textarea:focus {
@@ -736,9 +653,7 @@ main {
   font-weight: 600; white-space: nowrap;
 }
 
-.history-list {
-  display: flex; flex-direction: column; gap: 6px;
-}
+.history-list { display: flex; flex-direction: column; gap: 6px; }
 .history-item {
   display: flex; justify-content: space-between; align-items: center;
   padding: 10px 14px;
@@ -746,16 +661,11 @@ main {
   border-radius: var(--radius-sm);
   border-right: 3px solid var(--teal);
 }
-.history-date {
-  font-weight: 600; color: var(--text);
-}
+.history-date { font-weight: 600; color: var(--text); }
 .history-delete {
-  color: var(--danger);
-  cursor: pointer;
-  padding: 4px 8px;
-  background: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
+  color: var(--danger); cursor: pointer;
+  padding: 4px 8px; background: none;
+  border-radius: 4px; font-size: 0.85rem;
 }
 .history-delete:hover { background: var(--danger-light); }
 
@@ -803,33 +713,24 @@ main {
 }
 .filter-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .filter-tag {
-  background: var(--bg);
-  color: var(--text-light);
-  padding: 6px 12px;
-  border-radius: 16px;
+  background: var(--bg); color: var(--text-light);
+  padding: 6px 12px; border-radius: 16px;
   font-size: 0.9rem;
   border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s;
+  cursor: pointer; transition: all 0.2s;
   user-select: none;
 }
 .filter-tag:hover { background: var(--teal-bg); }
 .filter-tag.selected {
-  background: var(--teal);
-  color: var(--white);
-  border-color: var(--teal);
+  background: var(--teal); color: var(--white); border-color: var(--teal);
 }
 .time-slider-group { display: flex; align-items: center; gap: 10px; }
 .time-slider-group input[type="number"] { width: 80px; }
 .time-slider-label { color: var(--text-light); font-size: 0.9rem; }
-.filter-star-row {
-  display: flex; gap: 6px;
-  direction: ltr; justify-content: flex-end;
-}
+.filter-star-row { display: flex; gap: 6px; direction: ltr; justify-content: flex-end; }
 .filter-star-row .f-star {
   font-size: 1.8rem; cursor: pointer;
-  color: var(--border);
-  user-select: none;
+  color: var(--border); user-select: none;
 }
 .filter-star-row .f-star.active { color: var(--gold); }
 
@@ -853,10 +754,373 @@ main {
 
 .hidden { display: none !important; }
 
+/* ===================================== */
+/* ===== COOKING MODE (SBV 3) ========== */
+/* ===================================== */
+.cooking-overlay {
+  position: fixed; inset: 0;
+  background: var(--white);
+  z-index: 500;
+  display: none;
+  flex-direction: column;
+}
+.cooking-overlay.active { display: flex; }
+
+.cooking-header {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  color: white;
+  padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-shrink: 0;
+  box-shadow: var(--shadow);
+}
+.cooking-header .recipe-title-mode {
+  font-size: 1.1rem; font-weight: 700;
+  flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cooking-header .icon-btn { color: white; }
+.cooking-progress-bar {
+  height: 6px;
+  background: var(--border);
+  position: relative;
+  flex-shrink: 0;
+}
+.cooking-progress-fill {
+  height: 100%;
+  background: linear-gradient(to left, var(--teal-light), var(--teal-dark));
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.cooking-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex; flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==== INGREDIENTS PHASE ==== */
+.cooking-phase-ingredients {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+.cooking-phase-ingredients.active { display: flex; }
+
+.servings-calculator {
+  background: linear-gradient(135deg, var(--teal-bg), var(--white));
+  border: 2px solid var(--teal-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.servings-calculator h3 {
+  color: var(--teal-dark);
+  font-size: 1.1rem; font-weight: 700;
+  text-align: center;
+}
+.servings-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px;
+  font-size: 1.2rem;
+}
+.servings-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+.servings-btn:hover {
+  background: var(--teal-light);
+  transform: scale(1.05);
+}
+.servings-btn:disabled {
+  opacity: 0.3; cursor: not-allowed; transform: none;
+}
+.servings-value {
+  min-width: 80px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--teal-dark);
+  font-size: 1.3rem;
+}
+.servings-reset {
+  font-size: 0.85rem;
+  color: var(--teal);
+  text-decoration: underline;
+  background: none; border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 4px;
+}
+.servings-reset:hover { color: var(--teal-dark); }
+
+.ingredients-display {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.ingredients-display h3 {
+  color: var(--teal-dark);
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--teal-soft);
+}
+.ingredients-display .ingredient-line {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.ingredients-display .ingredient-line:last-child { border-bottom: none; }
+@media (min-width: 768px) {
+  .ingredients-display .ingredient-line { font-size: 1.15rem; }
+}
+
+.btn-proceed-to-steps {
+  background: linear-gradient(135deg, var(--teal-light), var(--teal));
+  color: white;
+  padding: 18px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(44,122,123,0.35);
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.btn-proceed-to-steps:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(44,122,123,0.45);
+}
+
+/* ==== STEPS PHASE ==== */
+.cooking-phase-steps {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+}
+.cooking-phase-steps.active { display: flex; }
+
+.step-counter {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.step-counter strong {
+  color: var(--teal-dark);
+  font-size: 1.1rem;
+}
+
+.current-step {
+  background: var(--white);
+  border: 2px solid var(--teal-soft);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column; gap: 16px;
+  margin-bottom: 20px;
+}
+.current-step.completed {
+  background: var(--teal-bg);
+  border-color: var(--teal);
+}
+
+/* ===== ADAPTIVE FONT SIZES ===== */
+.step-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+  font-weight: 500;
+}
+@media (min-width: 600px) {
+  .step-text { font-size: 1.4rem; }
+}
+@media (min-width: 900px) {
+  .step-text { font-size: 1.5rem; line-height: 1.7; }
+}
+
+.btn-complete-step {
+  background: var(--teal);
+  color: white;
+  padding: 18px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  width: 100%;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(44,122,123,0.3);
+}
+.btn-complete-step:hover {
+  background: var(--teal-light);
+  transform: translateY(-1px);
+}
+.btn-complete-step.completed {
+  background: var(--teal-dark);
+}
+.btn-complete-step.completed:hover { background: var(--teal-dark); }
+
+/* ===== STEP TIMER ===== */
+.step-timer-box {
+  background: linear-gradient(135deg, var(--teal-bg), var(--white));
+  border: 2px solid var(--teal-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  align-items: center;
+}
+.step-timer-box.running {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  border-color: var(--teal-dark);
+  color: white;
+}
+.step-timer-box.finished {
+  background: linear-gradient(135deg, #fed7d7, #fff);
+  border-color: var(--danger);
+  animation: flash 1s ease-in-out 3;
+}
+@keyframes flash {
+  0%, 100% { background: linear-gradient(135deg, #fed7d7, #fff); }
+  50% { background: linear-gradient(135deg, var(--danger), #fff); }
+}
+.step-timer-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.step-timer-display {
+  font-size: 2.8rem;
+  font-weight: 800;
+  font-family: 'Segoe UI', monospace;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.step-timer-box.running .step-timer-display { color: white; }
+.step-timer-controls {
+  display: flex; gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.timer-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+  min-width: 110px;
+}
+.timer-btn.start {
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 2px 6px rgba(44,122,123,0.3);
+}
+.timer-btn.start:hover { background: var(--teal-light); transform: translateY(-1px); }
+.timer-btn.pause {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  border: 2px solid white;
+}
+.timer-btn.pause:hover { background: rgba(255,255,255,0.35); }
+.timer-btn.reset {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.timer-btn.reset:hover { background: var(--teal-bg); }
+
+/* ===== NAVIGATION ===== */
+.cooking-nav {
+  display: flex; gap: 12px;
+  padding: 12px 0;
+  margin-top: auto;
+}
+.nav-btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  border: 2px solid var(--teal);
+}
+.nav-btn.prev {
+  background: var(--white);
+  color: var(--teal);
+}
+.nav-btn.prev:hover {
+  background: var(--teal-bg);
+}
+.nav-btn.next {
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 2px 8px rgba(44,122,123,0.3);
+}
+.nav-btn.next:hover {
+  background: var(--teal-light);
+  transform: translateY(-1px);
+}
+.nav-btn:disabled {
+  opacity: 0.3; cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ===== FINISHED SCREEN ===== */
+.cooking-finished {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  flex: 1;
+}
+.cooking-finished.active { display: flex; }
+.cooking-finished .big-emoji {
+  font-size: 5rem;
+  margin-bottom: 16px;
+}
+.cooking-finished h2 {
+  color: var(--teal-dark);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.cooking-finished p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+.cooking-finished .actions {
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%; max-width: 300px;
+}
+
 @media print {
   header, .tabs, .active-filters, .fab, .detail-header, .toast,
   .results-info, .last-cooked-banner, .cook-tracker, .add-comment-form,
-  .comment-delete { display: none !important; }
+  .comment-delete, .btn-start-cooking { display: none !important; }
   body { background: white; }
   main { padding: 0; }
   .detail-img { max-height: 300px; }
@@ -898,6 +1162,7 @@ main {
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
 </button>
 
+<!-- Recipe Form Modal -->
 <div class="modal-overlay" id="modalRecipeForm">
   <div class="modal">
     <div class="modal-header">
@@ -968,7 +1233,7 @@ main {
       </div>
       <div class="form-group">
         <label>אופן הכנה</label>
-        <textarea id="inputInstructions" placeholder="שלבי ההכנה..."></textarea>
+        <textarea id="inputInstructions" placeholder="שלבי ההכנה (שורה או שתיים לכל שלב)..."></textarea>
       </div>
       <div class="form-group">
         <label>הערות</label>
@@ -986,6 +1251,7 @@ main {
   </div>
 </div>
 
+<!-- Recipe Detail Modal -->
 <div class="modal-overlay fullscreen" id="modalRecipeDetail">
   <div class="modal">
     <div class="detail-header">
@@ -1011,6 +1277,74 @@ main {
   </div>
 </div>
 
+<!-- ========================================== -->
+<!-- COOKING MODE OVERLAY                        -->
+<!-- ========================================== -->
+<div class="cooking-overlay" id="cookingOverlay">
+  <div class="cooking-header">
+    <button class="icon-btn" id="btnExitCooking" aria-label="סגור מצב בישול">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="recipe-title-mode" id="cookingRecipeName">מצב בישול</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="cooking-progress-bar">
+    <div class="cooking-progress-fill" id="cookingProgress"></div>
+  </div>
+  <div class="cooking-body">
+    <!-- PHASE 1: INGREDIENTS -->
+    <div class="cooking-phase-ingredients active" id="cookingPhaseIngredients">
+      <div class="servings-calculator">
+        <h3>🍽️ כמה מנות להכין?</h3>
+        <div class="servings-row">
+          <button class="servings-btn" id="btnServingsMinus">−</button>
+          <span class="servings-value" id="servingsValue">6</span>
+          <button class="servings-btn" id="btnServingsPlus">+</button>
+        </div>
+        <button class="servings-reset" id="btnServingsReset">חזור לכמות המקורית</button>
+      </div>
+      <div class="ingredients-display">
+        <h3>📝 מצרכים</h3>
+        <div id="ingredientsList"></div>
+      </div>
+      <button class="btn-proceed-to-steps" id="btnProceedSteps">
+        <span>👩‍🍳 מוכנה? בואי נתחיל!</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+    <!-- PHASE 2: STEPS -->
+    <div class="cooking-phase-steps" id="cookingPhaseSteps">
+      <div class="step-counter" id="stepCounter"></div>
+      <div class="current-step" id="currentStep"></div>
+      <div class="cooking-nav">
+        <button class="nav-btn prev" id="btnPrevStep">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>שלב קודם</span>
+        </button>
+        <button class="nav-btn next" id="btnNextStep">
+          <span>שלב הבא</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- PHASE 3: FINISHED -->
+    <div class="cooking-finished" id="cookingPhaseFinished">
+      <div class="big-emoji">🎉</div>
+      <h2>סיימת לבשל!</h2>
+      <p>כל הכבוד, המנה מוכנה 💚</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="btnMarkCooked">
+          <span>✅ רשום כ"בישלתי היום"</span>
+        </button>
+        <button class="btn btn-secondary" id="btnFinishClose">סיום</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- History Modal -->
 <div class="modal-overlay" id="modalHistory">
   <div class="modal">
     <div class="modal-header">
@@ -1025,6 +1359,7 @@ main {
   </div>
 </div>
 
+<!-- Menu Modal -->
 <div class="modal-overlay" id="modalMenu">
   <div class="modal">
     <div class="modal-header">
@@ -1053,6 +1388,7 @@ main {
   </div>
 </div>
 
+<!-- Categories Modal -->
 <div class="modal-overlay" id="modalCategories">
   <div class="modal">
     <div class="modal-header">
@@ -1071,6 +1407,7 @@ main {
   </div>
 </div>
 
+<!-- Filter Modal -->
 <div class="modal-overlay" id="modalFilter">
   <div class="modal">
     <div class="modal-header">
@@ -1116,6 +1453,7 @@ main {
   </div>
 </div>
 
+<!-- Confirm Modal -->
 <div class="modal-overlay" id="modalConfirm">
   <div class="modal confirm-modal">
     <div class="confirm-body">
@@ -1132,6 +1470,8 @@ main {
 
 <div class="toast" id="toast"></div>
 
+<!-- Audio beep (generated from code - no external file needed) -->
+
 <script>
 const STORAGE_KEY = 'recipeBookData_v1';
 const POPULAR_THRESHOLD = 5;
@@ -1139,7 +1479,7 @@ const POPULAR_THRESHOLD = 5;
 function loadData() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { version: 2, categories: [], recipes: [] };
+    if (!raw) return { version: 3, categories: [], recipes: [] };
     const data = JSON.parse(raw);
     if (!data.categories) data.categories = [];
     if (!data.recipes) data.recipes = [];
@@ -1149,11 +1489,11 @@ function loadData() {
       if (!Array.isArray(r.cookHistory)) r.cookHistory = [];
       if (!Array.isArray(r.comments)) r.comments = [];
     });
-    data.version = 2;
+    data.version = 3;
     return data;
   } catch (e) {
     console.error('Load error:', e);
-    return { version: 2, categories: [], recipes: [] };
+    return { version: 3, categories: [], recipes: [] };
   }
 }
 
@@ -1177,7 +1517,23 @@ const state = {
   confirmCallback: null,
   currentTags: [],
   activeFilters: { tags: [], maxPrepTime: null, maxCookTime: null, minRating: 0 },
-  sortBy: 'dateNew'
+  sortBy: 'dateNew',
+  // Cooking mode state
+  cooking: {
+    recipeId: null,
+    steps: [],
+    currentStepIdx: 0,
+    originalServings: null,
+    currentServings: null,
+    originalIngredientLines: [],
+    completedSteps: new Set(),
+    timer: {
+      duration: 0,
+      remaining: 0,
+      running: false,
+      intervalId: null
+    }
+  }
 };
 
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
@@ -1429,15 +1785,9 @@ function getFilteredRecipes() {
   }
 
   switch (state.sortBy) {
-    case 'dateNew':
-      recipes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-      break;
-    case 'dateOld':
-      recipes.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-      break;
-    case 'alpha':
-      recipes.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'he'));
-      break;
+    case 'dateNew': recipes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)); break;
+    case 'dateOld': recipes.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0)); break;
+    case 'alpha': recipes.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'he')); break;
     case 'favFirst':
       recipes.sort((a, b) => {
         if (a.favorite && !b.favorite) return -1;
@@ -1531,21 +1881,15 @@ function renderRecipes() {
     if (r.favorite) {
       badges += `<div class="recipe-fav-badge"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>`;
     }
-    if (popular) {
-      badges += `<div class="recipe-popular-badge" title="פופולרי">🔥</div>`;
-    }
+    if (popular) badges += `<div class="recipe-popular-badge" title="פופולרי">🔥</div>`;
     badges += '</div>';
 
     const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
     let ratingRow = '';
     if (r.rating > 0 || cookCount > 0) {
       ratingRow = '<div class="recipe-rating-row">';
-      if (r.rating > 0) {
-        ratingRow += `<span>${renderStars(r.rating)}</span>`;
-      }
-      if (cookCount > 0) {
-        ratingRow += `<span class="recipe-cooked-count">🍽️ ${cookCount}</span>`;
-      }
+      if (r.rating > 0) ratingRow += `<span>${renderStars(r.rating)}</span>`;
+      if (cookCount > 0) ratingRow += `<span class="recipe-cooked-count">🍽️ ${cookCount}</span>`;
       ratingRow += '</div>';
     }
 
@@ -1594,7 +1938,6 @@ function showRecipeDetail(id) {
   if (!r) return;
   state.viewingRecipeId = id;
 
-  // ====== IMAGE NOW WRAPPED IN CONTAINER FOR BETTER SIZING ======
   const imgBlock = r.image
     ? `<div class="detail-img-wrapper"><img class="detail-img" src="${r.image}" alt=""></div>`
     : `<div class="detail-img-wrapper"><div class="detail-img-placeholder">🍽️</div></div>`;
@@ -1618,7 +1961,13 @@ function showRecipeDetail(id) {
       ${starsHtml}
     </div>`;
 
-  // ====== COOK TRACKER - BUTTON ON TOP, INFO BELOW ======
+  // START COOKING BUTTON (only if has instructions)
+  const hasSteps = r.instructions && r.instructions.trim();
+  const startCookingHtml = hasSteps ? `
+    <button class="btn-start-cooking" id="btnStartCooking">
+      <span>👩‍🍳 התחילי לבשל!</span>
+    </button>` : '';
+
   const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
   const lastCookTime = cookCount > 0 ? Math.max(...r.cookHistory) : null;
   const cookedToday = lastCookTime && isToday(lastCookTime);
@@ -1640,9 +1989,7 @@ function showRecipeDetail(id) {
   let tagsHtml = '';
   if ((Array.isArray(r.tags) && r.tags.length > 0) || isPopular(r)) {
     tagsHtml = '<div class="detail-tags">';
-    if (isPopular(r)) {
-      tagsHtml += '<span class="detail-tag popular">🔥 פופולרי</span>';
-    }
+    if (isPopular(r)) tagsHtml += '<span class="detail-tag popular">🔥 פופולרי</span>';
     if (Array.isArray(r.tags)) {
       tagsHtml += r.tags.map(t => `<span class="detail-tag" data-tag="${escapeHtml(t)}">🏷️ ${escapeHtml(t)}</span>`).join('');
     }
@@ -1691,6 +2038,7 @@ function showRecipeDetail(id) {
         ${escapeHtml(r.name)}
         ${r.favorite ? '<span class="fav-star">⭐</span>' : ''}
       </div>
+      ${startCookingHtml}
       ${ratingHtml}
       ${cookTracker}
       ${meta.length ? `<div class="detail-meta">${meta.join('')}</div>` : ''}
@@ -1724,9 +2072,10 @@ function showRecipeDetail(id) {
   }
 
   const btnHistory = document.getElementById('btnViewHistory');
-  if (btnHistory) {
-    btnHistory.onclick = () => showHistory(id);
-  }
+  if (btnHistory) btnHistory.onclick = () => showHistory(id);
+
+  const btnStart = document.getElementById('btnStartCooking');
+  if (btnStart) btnStart.onclick = () => startCookingMode(id);
 
   body.querySelectorAll('.detail-tag[data-tag]').forEach(el => {
     el.onclick = () => {
@@ -1750,8 +2099,7 @@ function showRecipeDetail(id) {
       r.comments.push({
         id: uid(),
         author: author || 'אנונימי',
-        text,
-        date: Date.now()
+        text, date: Date.now()
       });
       saveData();
       showToast('התגובה נוספה');
@@ -1819,6 +2167,441 @@ function showHistory(recipeId) {
   }
   openModal('modalHistory');
 }
+
+// ============================================================
+// COOKING MODE - NEW IN SBV 3
+// ============================================================
+
+// Parse instructions into separate steps
+// Strategy: split by blank lines first, fallback to single lines
+function parseSteps(instructions) {
+  if (!instructions || !instructions.trim()) return [];
+
+  // Try splitting by blank lines
+  let parts = instructions.split(/\n\s*\n/).map(s => s.trim()).filter(s => s.length > 0);
+
+  // If only one block, split by numbered lines like "1." or "1)" or by single newlines
+  if (parts.length === 1) {
+    const lines = instructions.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+    if (lines.length > 1) parts = lines;
+  }
+
+  return parts;
+}
+
+// Extract time in seconds from step text (e.g., "10 דקות" -> 600)
+function extractTimerSeconds(text) {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+
+  // Match patterns like "10 דקות", "30 שניות", "שעה", "1.5 שעות", "חצי שעה"
+  // Hebrew time patterns
+  const halfHour = /חצי\s*שעה/;
+  const quarterHour = /רבע\s*שעה/;
+  const hourPattern = /(\d+(?:\.\d+)?)\s*שעות?/;
+  const minPattern = /(\d+(?:\.\d+)?)\s*דקות?/;
+  const secPattern = /(\d+(?:\.\d+)?)\s*שניות?/;
+  const singleHour = /\bשעה\b/;
+
+  if (halfHour.test(text)) return 30 * 60;
+  if (quarterHour.test(text)) return 15 * 60;
+
+  const hourMatch = text.match(hourPattern);
+  if (hourMatch) return Math.round(parseFloat(hourMatch[1]) * 3600);
+
+  if (singleHour.test(text) && !hourMatch) return 3600;
+
+  const minMatch = text.match(minPattern);
+  if (minMatch) return Math.round(parseFloat(minMatch[1]) * 60);
+
+  const secMatch = text.match(secPattern);
+  if (secMatch) return Math.round(parseFloat(secMatch[1]));
+
+  return null;
+}
+
+// Scale number - handles fractions (1/2, 1/4, etc) and decimals
+function scaleQuantity(line, factor) {
+  if (!line) return line;
+
+  // Handle fractions like "1/2", "3/4", "2 1/2"
+  // Match patterns: [whole] fraction, fraction, or decimal
+  const numberPattern = /(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)/g;
+
+  return line.replace(numberPattern, (match) => {
+    let value = 0;
+    // Mixed fraction: "2 1/2"
+    const mixedMatch = match.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+    if (mixedMatch) {
+      value = parseInt(mixedMatch[1], 10) + parseInt(mixedMatch[2], 10) / parseInt(mixedMatch[3], 10);
+    } else if (match.includes('/')) {
+      // Simple fraction: "1/2"
+      const [num, den] = match.split('/').map(Number);
+      value = num / den;
+    } else {
+      value = parseFloat(match);
+    }
+
+    const scaled = value * factor;
+    // Round to nice number
+    if (scaled < 0.1) return match; // Too small, don't scale
+    if (Number.isInteger(scaled)) return String(scaled);
+
+    // Show with 1 or 2 decimals
+    if (scaled < 10) return scaled.toFixed(1).replace(/\.0$/, '');
+    return Math.round(scaled).toString();
+  });
+}
+
+function startCookingMode(recipeId) {
+  const r = state.data.recipes.find(x => x.id === recipeId);
+  if (!r) return;
+
+  state.cooking.recipeId = recipeId;
+  state.cooking.steps = parseSteps(r.instructions || '');
+  state.cooking.currentStepIdx = 0;
+  state.cooking.completedSteps = new Set();
+
+  // Parse servings - default 6 if can't extract
+  const servingsNum = extractMinutes(r.servings); // reuses: extracts first number
+  state.cooking.originalServings = servingsNum || 4;
+  state.cooking.currentServings = state.cooking.originalServings;
+
+  // Store original ingredient lines
+  state.cooking.originalIngredientLines = (r.ingredients || '').split('\n');
+
+  // Setup UI
+  document.getElementById('cookingRecipeName').textContent = r.name;
+  document.getElementById('cookingOverlay').classList.add('active');
+
+  // Close the detail modal behind
+  closeModal('modalRecipeDetail');
+
+  // Start on ingredients phase
+  showIngredientsPhase();
+}
+
+function showIngredientsPhase() {
+  document.getElementById('cookingPhaseIngredients').classList.add('active');
+  document.getElementById('cookingPhaseSteps').classList.remove('active');
+  document.getElementById('cookingPhaseFinished').classList.remove('active');
+
+  renderServings();
+  renderIngredientsList();
+  updateProgressBar();
+}
+
+function renderServings() {
+  document.getElementById('servingsValue').textContent =
+    `${state.cooking.currentServings} מנות`;
+  document.getElementById('btnServingsMinus').disabled = state.cooking.currentServings <= 1;
+}
+
+function renderIngredientsList() {
+  const factor = state.cooking.currentServings / state.cooking.originalServings;
+  const list = document.getElementById('ingredientsList');
+  const lines = state.cooking.originalIngredientLines;
+
+  if (lines.length === 0 || (lines.length === 1 && !lines[0].trim())) {
+    list.innerHTML = '<p style="color:var(--text-muted);text-align:center">אין רשימת מצרכים למתכון הזה</p>';
+    return;
+  }
+
+  list.innerHTML = lines.map(line => {
+    const scaled = scaleQuantity(line, factor);
+    return `<div class="ingredient-line">${escapeHtml(scaled)}</div>`;
+  }).join('');
+}
+
+function showStepsPhase() {
+  document.getElementById('cookingPhaseIngredients').classList.remove('active');
+  document.getElementById('cookingPhaseSteps').classList.add('active');
+  document.getElementById('cookingPhaseFinished').classList.remove('active');
+  renderCurrentStep();
+}
+
+function renderCurrentStep() {
+  stopTimer(); // always stop timer when moving steps
+
+  const idx = state.cooking.currentStepIdx;
+  const total = state.cooking.steps.length;
+  const stepText = state.cooking.steps[idx] || '';
+  const isCompleted = state.cooking.completedSteps.has(idx);
+
+  document.getElementById('stepCounter').innerHTML =
+    `<strong>שלב ${idx + 1}</strong> מתוך ${total}`;
+
+  const timerSeconds = extractTimerSeconds(stepText);
+  let timerHtml = '';
+  if (timerSeconds) {
+    timerHtml = `
+      <div class="step-timer-box" id="stepTimerBox">
+        <div class="step-timer-label">⏰ טיימר מוצע:</div>
+        <div class="step-timer-display" id="timerDisplay">${formatTimerDisplay(timerSeconds)}</div>
+        <div class="step-timer-controls">
+          <button class="timer-btn start" id="btnStartTimer" data-duration="${timerSeconds}">
+            <span>▶️ התחל טיימר</span>
+          </button>
+        </div>
+      </div>`;
+  }
+
+  const currentStepEl = document.getElementById('currentStep');
+  currentStepEl.className = 'current-step' + (isCompleted ? ' completed' : '');
+  currentStepEl.innerHTML = `
+    <div class="step-text">${escapeHtml(stepText)}</div>
+    ${timerHtml}
+    <button class="btn-complete-step ${isCompleted ? 'completed' : ''}" id="btnCompleteStep">
+      ${isCompleted ? '✅ בוצע' : '⭕ סמן כבוצע'}
+    </button>
+  `;
+
+  // Step complete button
+  document.getElementById('btnCompleteStep').onclick = () => {
+    if (state.cooking.completedSteps.has(idx)) {
+      state.cooking.completedSteps.delete(idx);
+    } else {
+      state.cooking.completedSteps.add(idx);
+    }
+    renderCurrentStep();
+    updateProgressBar();
+  };
+
+  // Timer buttons
+  const btnStartTimer = document.getElementById('btnStartTimer');
+  if (btnStartTimer) {
+    btnStartTimer.onclick = () => startTimer(parseInt(btnStartTimer.dataset.duration, 10));
+  }
+
+  // Nav buttons
+  document.getElementById('btnPrevStep').disabled = (idx === 0);
+  const btnNext = document.getElementById('btnNextStep');
+  if (idx === total - 1) {
+    btnNext.innerHTML = `
+      <span>סיימתי! 🎉</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    `;
+  } else {
+    btnNext.innerHTML = `
+      <span>שלב הבא</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    `;
+  }
+}
+
+function updateProgressBar() {
+  const total = state.cooking.steps.length + 1; // +1 for ingredients
+  let current = 0;
+  // ingredients phase is "before step 0"
+  if (document.getElementById('cookingPhaseIngredients').classList.contains('active')) {
+    current = 0;
+  } else if (document.getElementById('cookingPhaseFinished').classList.contains('active')) {
+    current = total;
+  } else {
+    current = state.cooking.completedSteps.size + 1; // ingredients done + completed steps
+  }
+  const pct = Math.min(100, (current / total) * 100);
+  document.getElementById('cookingProgress').style.width = pct + '%';
+}
+
+function formatTimerDisplay(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  if (mins >= 60) {
+    const hrs = Math.floor(mins / 60);
+    const remMins = mins % 60;
+    return `${hrs}:${String(remMins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+function startTimer(duration) {
+  stopTimer();
+  state.cooking.timer.duration = duration;
+  state.cooking.timer.remaining = duration;
+  state.cooking.timer.running = true;
+
+  const timerBox = document.getElementById('stepTimerBox');
+  if (timerBox) {
+    timerBox.classList.add('running');
+    timerBox.classList.remove('finished');
+  }
+
+  renderTimerRunning();
+
+  state.cooking.timer.intervalId = setInterval(() => {
+    state.cooking.timer.remaining--;
+    if (state.cooking.timer.remaining <= 0) {
+      timerFinished();
+    } else {
+      const display = document.getElementById('timerDisplay');
+      if (display) display.textContent = formatTimerDisplay(state.cooking.timer.remaining);
+    }
+  }, 1000);
+}
+
+function renderTimerRunning() {
+  const timerBox = document.getElementById('stepTimerBox');
+  if (!timerBox) return;
+  const display = document.getElementById('timerDisplay');
+  if (display) display.textContent = formatTimerDisplay(state.cooking.timer.remaining);
+  const controlsEl = timerBox.querySelector('.step-timer-controls');
+  if (controlsEl) {
+    controlsEl.innerHTML = `
+      <button class="timer-btn pause" id="btnPauseTimer">⏸️ השהה</button>
+      <button class="timer-btn reset" id="btnResetTimer">↺ איפוס</button>
+    `;
+    document.getElementById('btnPauseTimer').onclick = pauseTimer;
+    document.getElementById('btnResetTimer').onclick = resetTimer;
+  }
+}
+
+function pauseTimer() {
+  if (state.cooking.timer.intervalId) {
+    clearInterval(state.cooking.timer.intervalId);
+    state.cooking.timer.intervalId = null;
+  }
+  state.cooking.timer.running = false;
+
+  const timerBox = document.getElementById('stepTimerBox');
+  if (timerBox) timerBox.classList.remove('running');
+
+  const controlsEl = timerBox ? timerBox.querySelector('.step-timer-controls') : null;
+  if (controlsEl) {
+    controlsEl.innerHTML = `
+      <button class="timer-btn start" id="btnStartTimer" data-duration="${state.cooking.timer.remaining}">▶️ המשך</button>
+      <button class="timer-btn reset" id="btnResetTimer">↺ איפוס</button>
+    `;
+    document.getElementById('btnStartTimer').onclick = () => startTimer(state.cooking.timer.remaining);
+    document.getElementById('btnResetTimer').onclick = resetTimer;
+  }
+}
+
+function resetTimer() {
+  stopTimer();
+  const stepText = state.cooking.steps[state.cooking.currentStepIdx] || '';
+  const seconds = extractTimerSeconds(stepText);
+  if (seconds) {
+    state.cooking.timer.duration = seconds;
+    state.cooking.timer.remaining = seconds;
+    const display = document.getElementById('timerDisplay');
+    if (display) display.textContent = formatTimerDisplay(seconds);
+    const timerBox = document.getElementById('stepTimerBox');
+    if (timerBox) {
+      timerBox.classList.remove('running', 'finished');
+      const controlsEl = timerBox.querySelector('.step-timer-controls');
+      if (controlsEl) {
+        controlsEl.innerHTML = `<button class="timer-btn start" id="btnStartTimer" data-duration="${seconds}">▶️ התחל טיימר</button>`;
+        document.getElementById('btnStartTimer').onclick = () => startTimer(seconds);
+      }
+    }
+  }
+}
+
+function stopTimer() {
+  if (state.cooking.timer.intervalId) {
+    clearInterval(state.cooking.timer.intervalId);
+    state.cooking.timer.intervalId = null;
+  }
+  state.cooking.timer.running = false;
+}
+
+function timerFinished() {
+  stopTimer();
+  playBeep();
+  vibrate();
+  showToast('⏰ הטיימר הסתיים!');
+
+  const timerBox = document.getElementById('stepTimerBox');
+  if (timerBox) {
+    timerBox.classList.remove('running');
+    timerBox.classList.add('finished');
+    const display = document.getElementById('timerDisplay');
+    if (display) display.textContent = '00:00';
+    const label = timerBox.querySelector('.step-timer-label');
+    if (label) label.textContent = '⏰ הזמן נגמר!';
+    const controlsEl = timerBox.querySelector('.step-timer-controls');
+    if (controlsEl) {
+      controlsEl.innerHTML = `<button class="timer-btn reset" id="btnResetTimer">↺ אפס טיימר</button>`;
+      document.getElementById('btnResetTimer').onclick = resetTimer;
+    }
+  }
+}
+
+// Create a beep using Web Audio API - no external file needed
+function playBeep() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+
+    // Play 3 short beeps
+    const playBeepAt = (startTime, freq = 880, duration = 0.25) => {
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+      oscillator.frequency.value = freq;
+      oscillator.type = 'sine';
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.3, startTime + 0.02);
+      gain.gain.linearRampToValueAtTime(0, startTime + duration);
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration);
+    };
+
+    const now = ctx.currentTime;
+    playBeepAt(now);
+    playBeepAt(now + 0.35);
+    playBeepAt(now + 0.7);
+  } catch (e) {
+    console.warn('Audio beep failed:', e);
+  }
+}
+
+function vibrate() {
+  if ('vibrate' in navigator) {
+    try {
+      navigator.vibrate([400, 200, 400, 200, 400]);
+    } catch (e) {
+      console.warn('Vibrate failed:', e);
+    }
+  }
+}
+
+function exitCookingMode() {
+  stopTimer();
+  document.getElementById('cookingOverlay').classList.remove('active');
+  // Reopen detail modal
+  if (state.cooking.recipeId) {
+    showRecipeDetail(state.cooking.recipeId);
+  }
+  state.cooking.recipeId = null;
+}
+
+function showFinishedPhase() {
+  stopTimer();
+  document.getElementById('cookingPhaseIngredients').classList.remove('active');
+  document.getElementById('cookingPhaseSteps').classList.remove('active');
+  document.getElementById('cookingPhaseFinished').classList.add('active');
+  updateProgressBar();
+}
+
+function markCookedFromFinished() {
+  const r = state.data.recipes.find(x => x.id === state.cooking.recipeId);
+  if (!r) return;
+  if (!Array.isArray(r.cookHistory)) r.cookHistory = [];
+  r.cookHistory.push(Date.now());
+  saveData();
+  showToast(`נרשם! בישלת ${r.cookHistory.length} ${r.cookHistory.length === 1 ? 'פעם' : 'פעמים'}`);
+  renderLastCookedBanner();
+  renderRecipes();
+  exitCookingMode();
+}
+
+// ============================================================
+// END COOKING MODE
+// ============================================================
 
 function renderFormTags() {
   const container = document.getElementById('tagsContainer');
@@ -2267,7 +3050,6 @@ function showConfirm({ emoji, title, message, onYes }) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
   document.getElementById('searchInput').addEventListener('input', (e) => {
     state.searchTerm = e.target.value;
     renderRecipes();
@@ -2388,6 +3170,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ===== COOKING MODE HANDLERS =====
+  document.getElementById('btnExitCooking').addEventListener('click', () => {
+    showConfirm({
+      emoji: '🚪',
+      title: 'לצאת ממצב בישול?',
+      message: 'ההתקדמות בתוך המצב תאבד',
+      onYes: exitCookingMode
+    });
+  });
+
+  document.getElementById('btnServingsMinus').addEventListener('click', () => {
+    if (state.cooking.currentServings > 1) {
+      state.cooking.currentServings--;
+      renderServings();
+      renderIngredientsList();
+    }
+  });
+
+  document.getElementById('btnServingsPlus').addEventListener('click', () => {
+    state.cooking.currentServings++;
+    renderServings();
+    renderIngredientsList();
+  });
+
+  document.getElementById('btnServingsReset').addEventListener('click', () => {
+    state.cooking.currentServings = state.cooking.originalServings;
+    renderServings();
+    renderIngredientsList();
+  });
+
+  document.getElementById('btnProceedSteps').addEventListener('click', () => {
+    if (state.cooking.steps.length === 0) {
+      showToast('אין שלבי הכנה להצגה');
+      return;
+    }
+    showStepsPhase();
+  });
+
+  document.getElementById('btnPrevStep').addEventListener('click', () => {
+    if (state.cooking.currentStepIdx > 0) {
+      state.cooking.currentStepIdx--;
+      renderCurrentStep();
+      updateProgressBar();
+    }
+  });
+
+  document.getElementById('btnNextStep').addEventListener('click', () => {
+    const total = state.cooking.steps.length;
+    if (state.cooking.currentStepIdx < total - 1) {
+      state.cooking.currentStepIdx++;
+      renderCurrentStep();
+      updateProgressBar();
+    } else {
+      // Finished!
+      showFinishedPhase();
+    }
+  });
+
+  document.getElementById('btnMarkCooked').addEventListener('click', markCookedFromFinished);
+  document.getElementById('btnFinishClose').addEventListener('click', exitCookingMode);
+
+  // Initial render
   renderTabs();
   renderActiveFilters();
   renderLastCookedBanner();
