@@ -489,32 +489,50 @@ main {
 }
 .detail-header .actions { display: flex; gap: 4px; }
 .detail-body { padding: 0; }
+
+/* ====== IMAGE SIZE - MORE BALANCED ====== */
+.detail-img-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px 16px 0;
+}
 .detail-img {
   width: 100%;
-  max-height: 50vh;
+  max-height: 35vh;
   object-fit: cover;
   background: linear-gradient(135deg, var(--teal-soft), var(--teal-bg));
   display: block;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 .detail-img-placeholder {
-  width: 100%; aspect-ratio: 16/10;
+  width: 100%;
+  height: 220px;
   background: linear-gradient(135deg, var(--teal-soft), var(--teal-bg));
   display: flex; align-items: center; justify-content: center;
-  font-size: 5rem; color: var(--teal);
+  font-size: 4rem; color: var(--teal);
+  border-radius: var(--radius);
 }
+@media (max-width: 500px) {
+  .detail-img { max-height: 30vh; }
+  .detail-img-placeholder { height: 180px; }
+}
+
 .detail-content {
-  padding: 24px;
+  padding: 20px 24px 24px;
   max-width: 900px;
   margin: 0 auto;
 }
 .detail-title {
-  font-size: 1.8rem; font-weight: 700;
+  font-size: 1.6rem; font-weight: 700;
   color: var(--teal-dark);
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 @media (max-width: 500px) {
-  .detail-title { font-size: 1.5rem; }
-  .detail-content { padding: 20px 16px; }
+  .detail-title { font-size: 1.35rem; }
+  .detail-content { padding: 16px; }
 }
 .fav-star { color: var(--teal); font-size: 1.5rem; }
 
@@ -542,44 +560,74 @@ main {
 .detail-rating .star.active { color: var(--gold); }
 .detail-rating .star:hover { transform: scale(1.15); }
 
+/* ====== COOK TRACKER - BUTTON ON TOP NOW ====== */
 .cook-tracker {
-  display: flex; align-items: center; gap: 12px;
   margin: 12px 0;
-  padding: 14px;
+  padding: 16px;
   background: linear-gradient(135deg, var(--teal-bg), #fff);
   border: 1px solid var(--teal-soft);
   border-radius: var(--radius-sm);
-  flex-wrap: wrap;
-}
-.cook-tracker .info {
-  flex: 1;
-  display: flex; flex-direction: column; gap: 2px;
-}
-.cook-tracker .count-label {
-  font-size: 0.85rem; color: var(--text-muted);
-}
-.cook-tracker .count-value {
-  font-weight: 700; color: var(--teal-dark);
-  font-size: 1.05rem;
-}
-.cook-tracker .last-date {
-  font-size: 0.85rem; color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .btn-cook-today {
-  background: var(--teal); color: var(--white);
-  padding: 10px 18px;
+  background: var(--teal);
+  color: var(--white);
+  padding: 14px 18px;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
   transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(44,122,123,0.3);
 }
-.btn-cook-today:hover { background: var(--teal-light); transform: scale(1.03); }
-.btn-view-history {
+.btn-cook-today:hover {
+  background: var(--teal-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44,122,123,0.4);
+}
+.btn-cook-today.done {
+  background: var(--teal-dark);
+}
+.cook-tracker .info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cook-tracker .count-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cook-tracker .count-value {
+  font-weight: 700;
+  color: var(--teal-dark);
+  font-size: 1rem;
+}
+.cook-tracker .last-date {
   font-size: 0.85rem;
+  color: var(--text-light);
+}
+.btn-view-history {
+  font-size: 0.9rem;
   color: var(--teal);
   text-decoration: underline;
   cursor: pointer;
-  background: none; border: none;
+  background: none;
+  border: none;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+.btn-view-history:hover {
+  background: var(--teal-bg);
+  border-radius: var(--radius-sm);
 }
 
 .detail-meta {
@@ -688,7 +736,6 @@ main {
   font-weight: 600; white-space: nowrap;
 }
 
-/* History list */
 .history-list {
   display: flex; flex-direction: column; gap: 6px;
 }
@@ -1096,7 +1143,6 @@ function loadData() {
     const data = JSON.parse(raw);
     if (!data.categories) data.categories = [];
     if (!data.recipes) data.recipes = [];
-    // Migration for v2: ensure all new fields exist
     data.recipes.forEach(r => {
       if (!Array.isArray(r.tags)) r.tags = [];
       if (typeof r.rating !== 'number') r.rating = 0;
@@ -1163,7 +1209,6 @@ function getAllTags() {
   return Array.from(tagSet).sort((a, b) => a.localeCompare(b, 'he'));
 }
 
-// ===== Date formatting in Hebrew =====
 function formatHebrewDate(timestamp) {
   const d = new Date(timestamp);
   const now = new Date();
@@ -1201,7 +1246,7 @@ function isPopular(recipe) {
   return Array.isArray(recipe.cookHistory) && recipe.cookHistory.length >= POPULAR_THRESHOLD;
 }
 
-function renderStars(rating, size = '') {
+function renderStars(rating) {
   let html = '';
   for (let i = 1; i <= 5; i++) {
     html += `<span class="${i <= rating ? 'recipe-stars' : 'recipe-stars-empty'}">★</span>`;
@@ -1231,10 +1276,8 @@ async function resizeImage(file, maxSize = 900, quality = 0.78) {
   });
 }
 
-// ===== Last Cooked Banner =====
 function renderLastCookedBanner() {
   const banner = document.getElementById('lastCookedBanner');
-  // Find most recent cook across all recipes
   let latestRecipe = null;
   let latestTime = 0;
   state.data.recipes.forEach(r => {
@@ -1493,7 +1536,6 @@ function renderRecipes() {
     }
     badges += '</div>';
 
-    // Rating row
     const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
     let ratingRow = '';
     if (r.rating > 0 || cookCount > 0) {
@@ -1552,9 +1594,11 @@ function showRecipeDetail(id) {
   if (!r) return;
   state.viewingRecipeId = id;
 
-  const img = r.image
-    ? `<img class="detail-img" src="${r.image}" alt="">`
-    : `<div class="detail-img-placeholder">🍽️</div>`;
+  // ====== IMAGE NOW WRAPPED IN CONTAINER FOR BETTER SIZING ======
+  const imgBlock = r.image
+    ? `<div class="detail-img-wrapper"><img class="detail-img" src="${r.image}" alt=""></div>`
+    : `<div class="detail-img-wrapper"><div class="detail-img-placeholder">🍽️</div></div>`;
+
   const cat = state.data.categories.find(c => c.id === r.categoryId);
   const meta = [];
   if (cat) meta.push(`<span>📁 ${escapeHtml(cat.name)}</span>`);
@@ -1562,7 +1606,6 @@ function showRecipeDetail(id) {
   if (r.cookTime) meta.push(`<span>🔥 בישול: ${escapeHtml(r.cookTime)}</span>`);
   if (r.servings) meta.push(`<span>🍽️ ${escapeHtml(r.servings)}</span>`);
 
-  // Rating stars (interactive)
   const rating = r.rating || 0;
   let starsHtml = '<div class="star-row">';
   for (let i = 5; i >= 1; i--) {
@@ -1575,22 +1618,23 @@ function showRecipeDetail(id) {
       ${starsHtml}
     </div>`;
 
-  // Cook tracker
+  // ====== COOK TRACKER - BUTTON ON TOP, INFO BELOW ======
   const cookCount = Array.isArray(r.cookHistory) ? r.cookHistory.length : 0;
   const lastCookTime = cookCount > 0 ? Math.max(...r.cookHistory) : null;
   const cookedToday = lastCookTime && isToday(lastCookTime);
-  const popularTag = isPopular(r) ? '<div class="detail-tag popular" style="margin-right:8px">🔥 פופולרי</div>' : '';
 
   const cookTracker = `
     <div class="cook-tracker">
-      <div class="info">
-        <div class="count-value">🍽️ בישלתי ${cookCount} ${cookCount === 1 ? 'פעם' : 'פעמים'}</div>
-        ${lastCookTime ? `<div class="last-date">אחרונה: ${formatHebrewDate(lastCookTime)}</div>` : '<div class="last-date">עוד לא בושל</div>'}
-      </div>
-      ${cookCount > 0 ? '<button class="btn-view-history" id="btnViewHistory">הצג היסטוריה</button>' : ''}
-      <button class="btn-cook-today" id="btnCookToday">
+      <button class="btn-cook-today ${cookedToday ? 'done' : ''}" id="btnCookToday">
         ${cookedToday ? '✅ בישלתי היום' : '🍳 בישלתי היום'}
       </button>
+      <div class="info-row">
+        <div class="count-info">
+          <div class="count-value">🍽️ בישלתי ${cookCount} ${cookCount === 1 ? 'פעם' : 'פעמים'}</div>
+          ${lastCookTime ? `<div class="last-date">אחרונה: ${formatHebrewDate(lastCookTime)}</div>` : '<div class="last-date">עוד לא בושל</div>'}
+        </div>
+        ${cookCount > 0 ? '<button class="btn-view-history" id="btnViewHistory">הצג היסטוריה 📜</button>' : ''}
+      </div>
     </div>`;
 
   let tagsHtml = '';
@@ -1610,7 +1654,6 @@ function showRecipeDetail(id) {
   if (r.instructions) sections.push(`<div class="detail-section"><h3>אופן הכנה</h3><div class="content">${escapeHtml(r.instructions)}</div></div>`);
   if (r.notes) sections.push(`<div class="detail-section"><h3>הערות</h3><div class="content">${escapeHtml(r.notes)}</div></div>`);
 
-  // Comments section
   const comments = Array.isArray(r.comments) ? r.comments : [];
   let commentsHtml = `<div class="detail-section"><h3>💬 תגובות משפחה (${comments.length})</h3>`;
   if (comments.length === 0) {
@@ -1642,7 +1685,7 @@ function showRecipeDetail(id) {
 
   const body = document.getElementById('detailBody');
   body.innerHTML = `
-    ${img}
+    ${imgBlock}
     <div class="detail-content">
       <div class="detail-title">
         ${escapeHtml(r.name)}
@@ -1656,20 +1699,17 @@ function showRecipeDetail(id) {
       ${commentsHtml}
     </div>`;
 
-  // Rating stars click
   body.querySelectorAll('.detail-rating .star').forEach(el => {
     el.onclick = () => {
       const newRating = parseInt(el.dataset.rating, 10);
-      // Toggle off if same rating
       r.rating = (r.rating === newRating) ? 0 : newRating;
       saveData();
       showToast(r.rating > 0 ? `דורג ${r.rating} כוכבים` : 'הדירוג הוסר');
-      showRecipeDetail(id); // re-render
+      showRecipeDetail(id);
       renderRecipes();
     };
   });
 
-  // Cook today button
   const btnCook = document.getElementById('btnCookToday');
   if (btnCook) {
     btnCook.onclick = () => {
@@ -1683,13 +1723,11 @@ function showRecipeDetail(id) {
     };
   }
 
-  // View history button
   const btnHistory = document.getElementById('btnViewHistory');
   if (btnHistory) {
     btnHistory.onclick = () => showHistory(id);
   }
 
-  // Clickable tags
   body.querySelectorAll('.detail-tag[data-tag]').forEach(el => {
     el.onclick = () => {
       const tag = el.dataset.tag;
@@ -1702,7 +1740,6 @@ function showRecipeDetail(id) {
     };
   });
 
-  // Add comment
   const btnAddComment = document.getElementById('btnAddComment');
   if (btnAddComment) {
     btnAddComment.onclick = () => {
@@ -1722,7 +1759,6 @@ function showRecipeDetail(id) {
     };
   }
 
-  // Delete comment
   body.querySelectorAll('.comment-delete').forEach(el => {
     el.onclick = () => {
       const idx = parseInt(el.dataset.commentIdx, 10);
@@ -1743,7 +1779,6 @@ function showRecipeDetail(id) {
   openModal('modalRecipeDetail');
 }
 
-// ===== History Modal =====
 function showHistory(recipeId) {
   const r = state.data.recipes.find(x => x.id === recipeId);
   if (!r || !Array.isArray(r.cookHistory)) return;
@@ -1755,7 +1790,7 @@ function showHistory(recipeId) {
     list.innerHTML = `
       <p style="margin-bottom:12px;color:var(--text-light)">בישלת את <strong>${escapeHtml(r.name)}</strong> סה"כ ${sorted.length} ${sorted.length === 1 ? 'פעם' : 'פעמים'}:</p>
       <div class="history-list">
-        ${sorted.map((t, idx) => `
+        ${sorted.map(t => `
           <div class="history-item">
             <span class="history-date">🗓️ ${formatFullDate(t)} <span style="color:var(--text-muted);font-weight:normal">(${formatHebrewDate(t)})</span></span>
             <button class="history-delete" data-timestamp="${t}">מחק</button>
@@ -1785,7 +1820,6 @@ function showHistory(recipeId) {
   openModal('modalHistory');
 }
 
-// ===== Form Tags =====
 function renderFormTags() {
   const container = document.getElementById('tagsContainer');
   const input = document.getElementById('tagsInput');
@@ -1842,7 +1876,6 @@ function renderTagSuggestions() {
   });
 }
 
-// ===== Star rating in form =====
 function renderFormStars() {
   const stars = document.querySelectorAll('#starRatingInput .star');
   stars.forEach(el => {
@@ -2133,7 +2166,6 @@ function moveCategory(id, delta) {
 }
 
 function openFilterModal() {
-  // Rating stars
   document.querySelectorAll('#filterStarRow .f-star').forEach(el => {
     const val = parseInt(el.dataset.value, 10);
     el.classList.toggle('active', val <= state.activeFilters.minRating);
@@ -2163,7 +2195,6 @@ function applyFilterFromModal() {
   });
   const maxPrep = parseInt(document.getElementById('filterMaxPrepTime').value, 10);
   const maxCook = parseInt(document.getElementById('filterMaxCookTime').value, 10);
-  // Read minRating from state (set by star click handlers)
   state.activeFilters.tags = selectedTags;
   state.activeFilters.maxPrepTime = !isNaN(maxPrep) && maxPrep > 0 ? maxPrep : null;
   state.activeFilters.maxCookTime = !isNaN(maxCook) && maxCook > 0 ? maxCook : null;
@@ -2203,7 +2234,6 @@ function importData(file) {
         title: 'לייבא את הגיבוי?',
         message: `הקובץ מכיל ${data.categories.length} פרקים ו-${data.recipes.length} מתכונים. הנתונים הקיימים יוחלפו.`,
         onYes: () => {
-          // Migration for new fields
           data.recipes.forEach(r => {
             if (!Array.isArray(r.tags)) r.tags = [];
             if (typeof r.rating !== 'number') r.rating = 0;
@@ -2247,11 +2277,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnApplyFilter').addEventListener('click', applyFilterFromModal);
   document.getElementById('btnResetFilter').addEventListener('click', resetFilterModal);
 
-  // Filter modal star clicks
   document.querySelectorAll('#filterStarRow .f-star').forEach(el => {
     el.addEventListener('click', () => {
       const val = parseInt(el.dataset.value, 10);
-      // If clicking the currently-selected value, clear; else set to val
       state.activeFilters.minRating = (state.activeFilters.minRating === val) ? 0 : val;
       document.querySelectorAll('#filterStarRow .f-star').forEach(s => {
         const v = parseInt(s.dataset.value, 10);
@@ -2285,7 +2313,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btnSaveRecipe').addEventListener('click', saveRecipe);
 
-  // Form star rating
   document.querySelectorAll('#starRatingInput .star').forEach(el => {
     el.addEventListener('click', () => {
       const val = parseInt(el.dataset.value, 10);
