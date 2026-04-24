@@ -21,6 +21,9 @@
   --border: #e2e8f0;
   --danger: #c53030;
   --danger-light: #fed7d7;
+  --warning: #dd6b20;
+  --warning-bg: #fffaf0;
+  --warning-border: #fbd38d;
   --gold: #2c7a7b;
   --popular: #2c7a7b;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -60,6 +63,12 @@ header {
 }
 .icon-btn:hover, .icon-btn:active { background: rgba(255,255,255,0.15); }
 .icon-btn svg { width: 22px; height: 22px; }
+.icon-btn.has-dot::after {
+  content: ''; position: absolute; top: 6px; left: 6px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--warning);
+  border: 2px solid var(--teal);
+}
 .search-box {
   margin-top: 12px; position: relative; display: flex; gap: 8px;
 }
@@ -91,6 +100,62 @@ header {
   padding: 1px 6px; border-radius: 10px;
   min-width: 18px; text-align: center;
 }
+
+/* ===== BACKUP REMINDER BANNER ===== */
+.backup-reminder {
+  background: linear-gradient(135deg, var(--warning-bg), #fff);
+  border-right: 4px solid var(--warning);
+  padding: 12px 14px;
+  margin: 12px 16px 0;
+  border-radius: var(--radius-sm);
+  display: none;
+  align-items: center; gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.backup-reminder.visible { display: flex; }
+.backup-reminder:hover { transform: translateX(-2px); }
+.backup-reminder .backup-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.backup-reminder .backup-content {
+  flex: 1;
+}
+.backup-reminder .backup-title {
+  font-weight: 600;
+  color: var(--warning);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.backup-reminder .backup-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.backup-reminder .backup-action {
+  background: var(--warning);
+  color: white;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.backup-reminder .backup-dismiss {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  background: none;
+  cursor: pointer;
+}
+.backup-reminder .backup-dismiss:hover { background: var(--border); }
 
 .last-cooked-banner {
   background: linear-gradient(135deg, var(--teal-bg), #fff);
@@ -479,7 +544,6 @@ main {
 }
 .fav-star { color: var(--teal); font-size: 1.5rem; }
 
-/* ===== START COOKING BUTTON ===== */
 .btn-start-cooking {
   background: linear-gradient(135deg, var(--teal-light), var(--teal));
   color: white;
@@ -675,12 +739,39 @@ main {
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 12px;
   transition: background 0.2s; width: 100%;
+  position: relative;
 }
 .menu-item:last-child { border-bottom: none; }
 .menu-item:hover { background: var(--teal-bg); }
 .menu-item svg { width: 22px; height: 22px; color: var(--teal); flex-shrink: 0; }
 .menu-item.danger { color: var(--danger); }
 .menu-item.danger svg { color: var(--danger); }
+.menu-item-content {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.menu-item-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+.menu-item-subtitle.alert {
+  color: var(--warning);
+  font-weight: 600;
+}
+.menu-help-block {
+  padding: 12px 16px;
+  background: var(--teal-bg);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--teal-dark);
+  line-height: 1.6;
+}
+.menu-help-block strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--teal-dark);
+}
 
 .cat-list { display: flex; flex-direction: column; gap: 8px; }
 .cat-item {
@@ -740,6 +831,41 @@ main {
 .confirm-body h3 { color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
 .confirm-body p { color: var(--text-light); }
 
+/* ===== HELP/SYNC MODAL ===== */
+.help-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.help-content h3 {
+  color: var(--teal-dark);
+  font-size: 1.1rem;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.help-content h3:first-child { margin-top: 0; }
+.help-content ol, .help-content ul {
+  padding-right: 24px;
+  margin-bottom: 12px;
+}
+.help-content ol li, .help-content ul li {
+  margin-bottom: 6px;
+}
+.help-content .help-tip {
+  background: var(--teal-bg);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border-right: 3px solid var(--teal);
+  margin: 10px 0;
+}
+.help-content .help-warning {
+  background: var(--warning-bg);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border-right: 3px solid var(--warning);
+  margin: 10px 0;
+}
+
 .toast {
   position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
   background: var(--teal-dark); color: var(--white);
@@ -754,9 +880,7 @@ main {
 
 .hidden { display: none !important; }
 
-/* ===================================== */
-/* ===== COOKING MODE (SBV 3) ========== */
-/* ===================================== */
+/* ===== COOKING MODE ===== */
 .cooking-overlay {
   position: fixed; inset: 0;
   background: var(--white);
@@ -765,7 +889,6 @@ main {
   flex-direction: column;
 }
 .cooking-overlay.active { display: flex; }
-
 .cooking-header {
   background: linear-gradient(135deg, var(--teal-dark), var(--teal));
   color: white;
@@ -792,7 +915,6 @@ main {
   transition: width 0.3s ease;
   width: 0%;
 }
-
 .cooking-body {
   flex: 1;
   overflow-y: auto;
@@ -802,15 +924,12 @@ main {
   margin: 0 auto;
   width: 100%;
 }
-
-/* ==== INGREDIENTS PHASE ==== */
 .cooking-phase-ingredients {
   display: none;
   flex-direction: column;
   gap: 16px;
 }
 .cooking-phase-ingredients.active { display: flex; }
-
 .servings-calculator {
   background: linear-gradient(135deg, var(--teal-bg), var(--white));
   border: 2px solid var(--teal-soft);
@@ -833,8 +952,7 @@ main {
   border-radius: 50%;
   background: var(--teal);
   color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.5rem; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s;
   box-shadow: var(--shadow);
@@ -843,27 +961,19 @@ main {
   background: var(--teal-light);
   transform: scale(1.05);
 }
-.servings-btn:disabled {
-  opacity: 0.3; cursor: not-allowed; transform: none;
-}
+.servings-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
 .servings-value {
-  min-width: 80px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--teal-dark);
+  min-width: 80px; text-align: center;
+  font-weight: 700; color: var(--teal-dark);
   font-size: 1.3rem;
 }
 .servings-reset {
-  font-size: 0.85rem;
-  color: var(--teal);
+  font-size: 0.85rem; color: var(--teal);
   text-decoration: underline;
-  background: none; border: none;
-  cursor: pointer;
-  text-align: center;
-  padding: 4px;
+  background: none; border: none; cursor: pointer;
+  text-align: center; padding: 4px;
 }
 .servings-reset:hover { color: var(--teal-dark); }
-
 .ingredients-display {
   background: var(--white);
   border: 1px solid var(--border);
@@ -889,14 +999,12 @@ main {
 @media (min-width: 768px) {
   .ingredients-display .ingredient-line { font-size: 1.15rem; }
 }
-
 .btn-proceed-to-steps {
   background: linear-gradient(135deg, var(--teal-light), var(--teal));
   color: white;
   padding: 18px;
   border-radius: var(--radius);
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: 700; font-size: 1.15rem;
   display: flex; align-items: center; justify-content: center;
   gap: 10px;
   box-shadow: 0 4px 12px rgba(44,122,123,0.35);
@@ -907,27 +1015,22 @@ main {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(44,122,123,0.45);
 }
-
-/* ==== STEPS PHASE ==== */
 .cooking-phase-steps {
   display: none;
   flex-direction: column;
   flex: 1;
 }
 .cooking-phase-steps.active { display: flex; }
-
 .step-counter {
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.95rem; font-weight: 600;
   margin-bottom: 16px;
 }
 .step-counter strong {
   color: var(--teal-dark);
   font-size: 1.1rem;
 }
-
 .current-step {
   background: var(--white);
   border: 2px solid var(--teal-soft);
@@ -941,8 +1044,6 @@ main {
   background: var(--teal-bg);
   border-color: var(--teal);
 }
-
-/* ===== ADAPTIVE FONT SIZES ===== */
 .step-text {
   font-size: 1.3rem;
   line-height: 1.8;
@@ -950,23 +1051,16 @@ main {
   white-space: pre-wrap;
   font-weight: 500;
 }
-@media (min-width: 600px) {
-  .step-text { font-size: 1.4rem; }
-}
-@media (min-width: 900px) {
-  .step-text { font-size: 1.5rem; line-height: 1.7; }
-}
-
+@media (min-width: 600px) { .step-text { font-size: 1.4rem; } }
+@media (min-width: 900px) { .step-text { font-size: 1.5rem; line-height: 1.7; } }
 .btn-complete-step {
   background: var(--teal);
   color: white;
   padding: 18px;
   border-radius: var(--radius);
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: 700; font-size: 1.15rem;
   display: flex; align-items: center; justify-content: center;
-  gap: 10px;
-  width: 100%;
+  gap: 10px; width: 100%;
   transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(44,122,123,0.3);
 }
@@ -974,12 +1068,8 @@ main {
   background: var(--teal-light);
   transform: translateY(-1px);
 }
-.btn-complete-step.completed {
-  background: var(--teal-dark);
-}
+.btn-complete-step.completed { background: var(--teal-dark); }
 .btn-complete-step.completed:hover { background: var(--teal-dark); }
-
-/* ===== STEP TIMER ===== */
 .step-timer-box {
   background: linear-gradient(135deg, var(--teal-bg), var(--white));
   border: 2px solid var(--teal-soft);
@@ -1002,14 +1092,9 @@ main {
   0%, 100% { background: linear-gradient(135deg, #fed7d7, #fff); }
   50% { background: linear-gradient(135deg, var(--danger), #fff); }
 }
-.step-timer-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  opacity: 0.85;
-}
+.step-timer-label { font-size: 0.95rem; font-weight: 600; opacity: 0.85; }
 .step-timer-display {
-  font-size: 2.8rem;
-  font-weight: 800;
+  font-size: 2.8rem; font-weight: 800;
   font-family: 'Segoe UI', monospace;
   letter-spacing: 2px;
   text-align: center;
@@ -1017,22 +1102,19 @@ main {
 .step-timer-box.running .step-timer-display { color: white; }
 .step-timer-controls {
   display: flex; gap: 10px;
-  width: 100%;
-  justify-content: center;
+  width: 100%; justify-content: center;
 }
 .timer-btn {
   padding: 10px 20px;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 600; font-size: 0.95rem;
   display: inline-flex; align-items: center; justify-content: center;
   gap: 6px;
   transition: all 0.2s;
   min-width: 110px;
 }
 .timer-btn.start {
-  background: var(--teal);
-  color: white;
+  background: var(--teal); color: white;
   box-shadow: 0 2px 6px rgba(44,122,123,0.3);
 }
 .timer-btn.start:hover { background: var(--teal-light); transform: translateY(-1px); }
@@ -1043,13 +1125,10 @@ main {
 }
 .timer-btn.pause:hover { background: rgba(255,255,255,0.35); }
 .timer-btn.reset {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg); color: var(--text);
   border: 1px solid var(--border);
 }
 .timer-btn.reset:hover { background: var(--teal-bg); }
-
-/* ===== NAVIGATION ===== */
 .cooking-nav {
   display: flex; gap: 12px;
   padding: 12px 0;
@@ -1059,58 +1138,40 @@ main {
   flex: 1;
   padding: 16px;
   border-radius: var(--radius);
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 700; font-size: 1rem;
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px;
   transition: all 0.2s;
   border: 2px solid var(--teal);
 }
-.nav-btn.prev {
-  background: var(--white);
-  color: var(--teal);
-}
-.nav-btn.prev:hover {
-  background: var(--teal-bg);
-}
+.nav-btn.prev { background: var(--white); color: var(--teal); }
+.nav-btn.prev:hover { background: var(--teal-bg); }
 .nav-btn.next {
-  background: var(--teal);
-  color: white;
+  background: var(--teal); color: white;
   box-shadow: 0 2px 8px rgba(44,122,123,0.3);
 }
 .nav-btn.next:hover {
   background: var(--teal-light);
   transform: translateY(-1px);
 }
-.nav-btn:disabled {
-  opacity: 0.3; cursor: not-allowed;
-  transform: none !important;
-}
-
-/* ===== FINISHED SCREEN ===== */
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none !important; }
 .cooking-finished {
   display: none;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: center; justify-content: center;
   text-align: center;
   padding: 40px 20px;
   flex: 1;
 }
 .cooking-finished.active { display: flex; }
-.cooking-finished .big-emoji {
-  font-size: 5rem;
-  margin-bottom: 16px;
-}
+.cooking-finished .big-emoji { font-size: 5rem; margin-bottom: 16px; }
 .cooking-finished h2 {
   color: var(--teal-dark);
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem; margin-bottom: 10px;
 }
 .cooking-finished p {
   color: var(--text-light);
-  font-size: 1.1rem;
-  margin-bottom: 24px;
+  font-size: 1.1rem; margin-bottom: 24px;
 }
 .cooking-finished .actions {
   display: flex; flex-direction: column; gap: 10px;
@@ -1119,8 +1180,8 @@ main {
 
 @media print {
   header, .tabs, .active-filters, .fab, .detail-header, .toast,
-  .results-info, .last-cooked-banner, .cook-tracker, .add-comment-form,
-  .comment-delete, .btn-start-cooking { display: none !important; }
+  .results-info, .last-cooked-banner, .backup-reminder, .cook-tracker,
+  .add-comment-form, .comment-delete, .btn-start-cooking { display: none !important; }
   body { background: white; }
   main { padding: 0; }
   .detail-img { max-height: 300px; }
@@ -1152,6 +1213,17 @@ main {
     </button>
   </div>
 </header>
+
+<!-- BACKUP REMINDER BANNER -->
+<div class="backup-reminder" id="backupReminder">
+  <button class="backup-dismiss" id="btnDismissBackup" aria-label="הסתר ליום">✕</button>
+  <span class="backup-icon">💾</span>
+  <div class="backup-content">
+    <div class="backup-title" id="backupTitle">זמן לעשות גיבוי!</div>
+    <div class="backup-subtitle" id="backupSubtitle">הנתונים חשובים - כדאי לשמור</div>
+  </div>
+  <button class="backup-action" id="btnBackupNow">גיבוי עכשיו</button>
+</div>
 
 <div class="last-cooked-banner hidden" id="lastCookedBanner"></div>
 <div class="tabs" id="tabs"></div>
@@ -1277,9 +1349,7 @@ main {
   </div>
 </div>
 
-<!-- ========================================== -->
-<!-- COOKING MODE OVERLAY                        -->
-<!-- ========================================== -->
+<!-- Cooking Mode -->
 <div class="cooking-overlay" id="cookingOverlay">
   <div class="cooking-header">
     <button class="icon-btn" id="btnExitCooking" aria-label="סגור מצב בישול">
@@ -1292,7 +1362,6 @@ main {
     <div class="cooking-progress-fill" id="cookingProgress"></div>
   </div>
   <div class="cooking-body">
-    <!-- PHASE 1: INGREDIENTS -->
     <div class="cooking-phase-ingredients active" id="cookingPhaseIngredients">
       <div class="servings-calculator">
         <h3>🍽️ כמה מנות להכין?</h3>
@@ -1312,8 +1381,6 @@ main {
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
     </div>
-
-    <!-- PHASE 2: STEPS -->
     <div class="cooking-phase-steps" id="cookingPhaseSteps">
       <div class="step-counter" id="stepCounter"></div>
       <div class="current-step" id="currentStep"></div>
@@ -1328,8 +1395,6 @@ main {
         </button>
       </div>
     </div>
-
-    <!-- PHASE 3: FINISHED -->
     <div class="cooking-finished" id="cookingPhaseFinished">
       <div class="big-emoji">🎉</div>
       <h2>סיימת לבשל!</h2>
@@ -1369,20 +1434,88 @@ main {
       </button>
     </div>
     <div class="modal-body" style="padding:0">
+      <div class="menu-help-block" id="menuHelpBlock">
+        <strong>💡 טיפ:</strong>
+        <span id="menuBackupStatus">כדאי לעשות גיבוי מדי פעם ולשלוח לוואטסאפ לעצמך</span>
+      </div>
       <div class="menu-items">
         <button class="menu-item" id="btnManageCategories">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-          <span>ניהול פרקים</span>
+          <div class="menu-item-content">
+            <span>ניהול פרקים</span>
+          </div>
         </button>
         <button class="menu-item" id="btnExport">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span>גיבוי (הורדת קובץ)</span>
+          <div class="menu-item-content">
+            <span>גיבוי (הורדת קובץ)</span>
+            <span class="menu-item-subtitle" id="lastBackupInfo">עוד לא עשית גיבוי</span>
+          </div>
         </button>
         <button class="menu-item" id="btnImport">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <span>ייבוא גיבוי</span>
+          <div class="menu-item-content">
+            <span>ייבוא גיבוי</span>
+          </div>
+        </button>
+        <button class="menu-item" id="btnHelp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div class="menu-item-content">
+            <span>איך לסנכרן בין מכשירים?</span>
+            <span class="menu-item-subtitle">מדריך פשוט</span>
+          </div>
         </button>
         <input type="file" id="importFile" accept=".json" class="hidden">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help/Sync Modal -->
+<div class="modal-overlay" id="modalHelp">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>💡 איך לסנכרן בין המכשירים?</h2>
+      <button class="icon-btn" data-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="help-content">
+        <h3>📌 למה צריך לסנכרן?</h3>
+        <p>המתכונים שלך נשמרים בכל מכשיר בנפרד - אם הוספת מתכון בלנובו, הוא <strong>לא יופיע אוטומטית בפולד</strong>. צריך להעביר את הקובץ ידנית.</p>
+
+        <h3>🔄 שיטה קלה: דרך וואטסאפ</h3>
+        <ol>
+          <li><strong>במכשיר המקור</strong> (בד"כ לנובו) - לחצי על ⋮ → "גיבוי (הורדת קובץ)"</li>
+          <li>הקובץ יורד לתיקיית <strong>ההורדות</strong></li>
+          <li>פתחי <strong>WhatsApp Web</strong> במחשב</li>
+          <li>שלחי הודעה <strong>לעצמך</strong> (יש צ'אט "הודעות שלי" או שלחי למספר שלך)</li>
+          <li>צרפי את הקובץ שהורדת</li>
+          <li>פתחי את הוואטסאפ בפולד, הורידי את הקובץ</li>
+          <li>באפליקציה בפולד: ⋮ → "ייבוא גיבוי" → בחרי את הקובץ</li>
+        </ol>
+
+        <div class="help-tip">
+          <strong>💡 טיפ זהב:</strong> תמיד שמרי את הגיבוי בוואטסאפ - ככה יש לך גם גיבוי בענן למקרה שהמחשב או הטלפון יתקלקלו!
+        </div>
+
+        <h3>⚠️ חשוב לדעת</h3>
+        <div class="help-warning">
+          <strong>הימנעי מעריכה בשני מכשירים במקביל!</strong>
+          <p>אם תעשי שינויים גם בלנובו וגם בפולד, הייבוא <strong>ידרוס</strong> את מה שהיה קודם. עדיף לבחור מכשיר ראשי לעדכונים ולסנכרן פעם בשבוע.</p>
+        </div>
+
+        <h3>📅 מתי לעשות גיבוי?</h3>
+        <ul>
+          <li>אחרי הוספה/עריכה של מתכון חשוב</li>
+          <li>לפני עדכון של האפליקציה</li>
+          <li>אחת לשבוע באופן קבוע</li>
+        </ul>
+
+        <p style="margin-top:16px;color:var(--text-muted);font-size:0.9rem">
+          💚 האפליקציה תזכיר לך אוטומטית כשעבר שבוע מהגיבוי האחרון.
+        </p>
       </div>
     </div>
   </div>
@@ -1470,11 +1603,11 @@ main {
 
 <div class="toast" id="toast"></div>
 
-<!-- Audio beep (generated from code - no external file needed) -->
-
 <script>
 const STORAGE_KEY = 'recipeBookData_v1';
+const BACKUP_META_KEY = 'recipeBookBackupMeta';
 const POPULAR_THRESHOLD = 5;
+const BACKUP_REMINDER_DAYS = 7;
 
 function loadData() {
   try {
@@ -1506,8 +1639,115 @@ function saveData() {
   }
 }
 
+// ===== BACKUP METADATA =====
+function loadBackupMeta() {
+  try {
+    const raw = localStorage.getItem(BACKUP_META_KEY);
+    if (!raw) return { lastBackup: null, dismissedUntil: null };
+    return JSON.parse(raw);
+  } catch (e) {
+    return { lastBackup: null, dismissedUntil: null };
+  }
+}
+
+function saveBackupMeta(meta) {
+  try {
+    localStorage.setItem(BACKUP_META_KEY, JSON.stringify(meta));
+  } catch (e) {
+    console.error('Backup meta save error:', e);
+  }
+}
+
+function markBackupDone() {
+  state.backupMeta.lastBackup = Date.now();
+  state.backupMeta.dismissedUntil = null;
+  saveBackupMeta(state.backupMeta);
+  updateBackupReminder();
+  updateMenuBackupInfo();
+}
+
+function dismissBackupReminder() {
+  // Dismiss for 1 day
+  state.backupMeta.dismissedUntil = Date.now() + (24 * 60 * 60 * 1000);
+  saveBackupMeta(state.backupMeta);
+  updateBackupReminder();
+}
+
+function updateBackupReminder() {
+  const reminder = document.getElementById('backupReminder');
+  const now = Date.now();
+
+  // Hide if dismissed today
+  if (state.backupMeta.dismissedUntil && now < state.backupMeta.dismissedUntil) {
+    reminder.classList.remove('visible');
+    return;
+  }
+
+  // Show if no recipes yet - no need for backup
+  if (!state.data.recipes || state.data.recipes.length === 0) {
+    reminder.classList.remove('visible');
+    return;
+  }
+
+  const lastBackup = state.backupMeta.lastBackup;
+  const daysSinceBackup = lastBackup
+    ? Math.floor((now - lastBackup) / (1000 * 60 * 60 * 24))
+    : Infinity;
+
+  if (!lastBackup) {
+    // Never backed up and has recipes
+    document.getElementById('backupTitle').textContent = '💾 עוד לא עשית גיבוי!';
+    document.getElementById('backupSubtitle').textContent =
+      `יש לך ${state.data.recipes.length} מתכונים - כדאי לגבות`;
+    reminder.classList.add('visible');
+  } else if (daysSinceBackup >= BACKUP_REMINDER_DAYS) {
+    document.getElementById('backupTitle').textContent = '💾 זמן לגיבוי חדש!';
+    document.getElementById('backupSubtitle').textContent =
+      daysSinceBackup < 30
+        ? `הגיבוי האחרון היה לפני ${daysSinceBackup} ימים`
+        : `הגיבוי האחרון היה לפני ${Math.floor(daysSinceBackup / 30)} חודשים`;
+    reminder.classList.add('visible');
+  } else {
+    reminder.classList.remove('visible');
+  }
+}
+
+function updateMenuBackupInfo() {
+  const info = document.getElementById('lastBackupInfo');
+  const statusEl = document.getElementById('menuBackupStatus');
+  const lastBackup = state.backupMeta.lastBackup;
+
+  if (!lastBackup) {
+    info.textContent = 'עוד לא עשית גיבוי';
+    info.classList.add('alert');
+    if (state.data.recipes.length > 0) {
+      statusEl.innerHTML = '<strong style="color:var(--warning)">⚠️ אין לך גיבוי!</strong> מומלץ מאוד לעשות גיבוי ולשלוח לעצמך בוואטסאפ';
+    }
+  } else {
+    const days = Math.floor((Date.now() - lastBackup) / (1000 * 60 * 60 * 24));
+    if (days === 0) {
+      info.textContent = '✅ גיבוי אחרון: היום';
+      info.classList.remove('alert');
+    } else if (days === 1) {
+      info.textContent = '✅ גיבוי אחרון: אתמול';
+      info.classList.remove('alert');
+    } else if (days < 7) {
+      info.textContent = `גיבוי אחרון: לפני ${days} ימים`;
+      info.classList.remove('alert');
+    } else if (days < 30) {
+      info.textContent = `⚠️ גיבוי אחרון: לפני ${days} ימים`;
+      info.classList.add('alert');
+    } else {
+      info.textContent = `⚠️ גיבוי אחרון: לפני ${Math.floor(days / 30)} חודשים`;
+      info.classList.add('alert');
+    }
+    statusEl.textContent = 'כדאי לעשות גיבוי מדי פעם ולשלוח לוואטסאפ לעצמך';
+  }
+}
+
 const state = {
   data: loadData(),
+  backupMeta: loadBackupMeta(),
   currentFilter: 'all',
   searchTerm: '',
   editingRecipeId: null,
@@ -1518,7 +1758,6 @@ const state = {
   currentTags: [],
   activeFilters: { tags: [], maxPrepTime: null, maxCookTime: null, minRating: 0 },
   sortBy: 'dateNew',
-  // Cooking mode state
   cooking: {
     recipeId: null,
     steps: [],
@@ -1527,12 +1766,7 @@ const state = {
     currentServings: null,
     originalIngredientLines: [],
     completedSteps: new Set(),
-    timer: {
-      duration: 0,
-      remaining: 0,
-      running: false,
-      intervalId: null
-    }
+    timer: { duration: 0, remaining: 0, running: false, intervalId: null }
   }
 };
 
@@ -1961,7 +2195,6 @@ function showRecipeDetail(id) {
       ${starsHtml}
     </div>`;
 
-  // START COOKING BUTTON (only if has instructions)
   const hasSteps = r.instructions && r.instructions.trim();
   const startCookingHtml = hasSteps ? `
     <button class="btn-start-cooking" id="btnStartCooking">
@@ -2168,86 +2401,54 @@ function showHistory(recipeId) {
   openModal('modalHistory');
 }
 
-// ============================================================
-// COOKING MODE - NEW IN SBV 3
-// ============================================================
-
-// Parse instructions into separate steps
-// Strategy: split by blank lines first, fallback to single lines
+// ===== COOKING MODE =====
 function parseSteps(instructions) {
   if (!instructions || !instructions.trim()) return [];
-
-  // Try splitting by blank lines
   let parts = instructions.split(/\n\s*\n/).map(s => s.trim()).filter(s => s.length > 0);
-
-  // If only one block, split by numbered lines like "1." or "1)" or by single newlines
   if (parts.length === 1) {
     const lines = instructions.split('\n').map(s => s.trim()).filter(s => s.length > 0);
     if (lines.length > 1) parts = lines;
   }
-
   return parts;
 }
 
-// Extract time in seconds from step text (e.g., "10 דקות" -> 600)
 function extractTimerSeconds(text) {
   if (!text) return null;
-  const lower = text.toLowerCase();
-
-  // Match patterns like "10 דקות", "30 שניות", "שעה", "1.5 שעות", "חצי שעה"
-  // Hebrew time patterns
   const halfHour = /חצי\s*שעה/;
   const quarterHour = /רבע\s*שעה/;
   const hourPattern = /(\d+(?:\.\d+)?)\s*שעות?/;
   const minPattern = /(\d+(?:\.\d+)?)\s*דקות?/;
   const secPattern = /(\d+(?:\.\d+)?)\s*שניות?/;
   const singleHour = /\bשעה\b/;
-
   if (halfHour.test(text)) return 30 * 60;
   if (quarterHour.test(text)) return 15 * 60;
-
   const hourMatch = text.match(hourPattern);
   if (hourMatch) return Math.round(parseFloat(hourMatch[1]) * 3600);
-
   if (singleHour.test(text) && !hourMatch) return 3600;
-
   const minMatch = text.match(minPattern);
   if (minMatch) return Math.round(parseFloat(minMatch[1]) * 60);
-
   const secMatch = text.match(secPattern);
   if (secMatch) return Math.round(parseFloat(secMatch[1]));
-
   return null;
 }
 
-// Scale number - handles fractions (1/2, 1/4, etc) and decimals
 function scaleQuantity(line, factor) {
   if (!line) return line;
-
-  // Handle fractions like "1/2", "3/4", "2 1/2"
-  // Match patterns: [whole] fraction, fraction, or decimal
   const numberPattern = /(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)/g;
-
   return line.replace(numberPattern, (match) => {
     let value = 0;
-    // Mixed fraction: "2 1/2"
     const mixedMatch = match.match(/^(\d+)\s+(\d+)\/(\d+)$/);
     if (mixedMatch) {
       value = parseInt(mixedMatch[1], 10) + parseInt(mixedMatch[2], 10) / parseInt(mixedMatch[3], 10);
     } else if (match.includes('/')) {
-      // Simple fraction: "1/2"
       const [num, den] = match.split('/').map(Number);
       value = num / den;
     } else {
       value = parseFloat(match);
     }
-
     const scaled = value * factor;
-    // Round to nice number
-    if (scaled < 0.1) return match; // Too small, don't scale
+    if (scaled < 0.1) return match;
     if (Number.isInteger(scaled)) return String(scaled);
-
-    // Show with 1 or 2 decimals
     if (scaled < 10) return scaled.toFixed(1).replace(/\.0$/, '');
     return Math.round(scaled).toString();
   });
@@ -2262,22 +2463,15 @@ function startCookingMode(recipeId) {
   state.cooking.currentStepIdx = 0;
   state.cooking.completedSteps = new Set();
 
-  // Parse servings - default 6 if can't extract
-  const servingsNum = extractMinutes(r.servings); // reuses: extracts first number
+  const servingsNum = extractMinutes(r.servings);
   state.cooking.originalServings = servingsNum || 4;
   state.cooking.currentServings = state.cooking.originalServings;
 
-  // Store original ingredient lines
   state.cooking.originalIngredientLines = (r.ingredients || '').split('\n');
 
-  // Setup UI
   document.getElementById('cookingRecipeName').textContent = r.name;
   document.getElementById('cookingOverlay').classList.add('active');
-
-  // Close the detail modal behind
   closeModal('modalRecipeDetail');
-
-  // Start on ingredients phase
   showIngredientsPhase();
 }
 
@@ -2285,15 +2479,13 @@ function showIngredientsPhase() {
   document.getElementById('cookingPhaseIngredients').classList.add('active');
   document.getElementById('cookingPhaseSteps').classList.remove('active');
   document.getElementById('cookingPhaseFinished').classList.remove('active');
-
   renderServings();
   renderIngredientsList();
   updateProgressBar();
 }
 
 function renderServings() {
-  document.getElementById('servingsValue').textContent =
-    `${state.cooking.currentServings} מנות`;
+  document.getElementById('servingsValue').textContent = `${state.cooking.currentServings} מנות`;
   document.getElementById('btnServingsMinus').disabled = state.cooking.currentServings <= 1;
 }
 
@@ -2301,12 +2493,10 @@ function renderIngredientsList() {
   const factor = state.cooking.currentServings / state.cooking.originalServings;
   const list = document.getElementById('ingredientsList');
   const lines = state.cooking.originalIngredientLines;
-
   if (lines.length === 0 || (lines.length === 1 && !lines[0].trim())) {
     list.innerHTML = '<p style="color:var(--text-muted);text-align:center">אין רשימת מצרכים למתכון הזה</p>';
     return;
   }
-
   list.innerHTML = lines.map(line => {
     const scaled = scaleQuantity(line, factor);
     return `<div class="ingredient-line">${escapeHtml(scaled)}</div>`;
@@ -2321,15 +2511,13 @@ function showStepsPhase() {
 }
 
 function renderCurrentStep() {
-  stopTimer(); // always stop timer when moving steps
-
+  stopTimer();
   const idx = state.cooking.currentStepIdx;
   const total = state.cooking.steps.length;
   const stepText = state.cooking.steps[idx] || '';
   const isCompleted = state.cooking.completedSteps.has(idx);
 
-  document.getElementById('stepCounter').innerHTML =
-    `<strong>שלב ${idx + 1}</strong> מתוך ${total}`;
+  document.getElementById('stepCounter').innerHTML = `<strong>שלב ${idx + 1}</strong> מתוך ${total}`;
 
   const timerSeconds = extractTimerSeconds(stepText);
   let timerHtml = '';
@@ -2356,7 +2544,6 @@ function renderCurrentStep() {
     </button>
   `;
 
-  // Step complete button
   document.getElementById('btnCompleteStep').onclick = () => {
     if (state.cooking.completedSteps.has(idx)) {
       state.cooking.completedSteps.delete(idx);
@@ -2367,13 +2554,11 @@ function renderCurrentStep() {
     updateProgressBar();
   };
 
-  // Timer buttons
   const btnStartTimer = document.getElementById('btnStartTimer');
   if (btnStartTimer) {
     btnStartTimer.onclick = () => startTimer(parseInt(btnStartTimer.dataset.duration, 10));
   }
 
-  // Nav buttons
   document.getElementById('btnPrevStep').disabled = (idx === 0);
   const btnNext = document.getElementById('btnNextStep');
   if (idx === total - 1) {
@@ -2390,15 +2575,14 @@ function renderCurrentStep() {
 }
 
 function updateProgressBar() {
-  const total = state.cooking.steps.length + 1; // +1 for ingredients
+  const total = state.cooking.steps.length + 1;
   let current = 0;
-  // ingredients phase is "before step 0"
   if (document.getElementById('cookingPhaseIngredients').classList.contains('active')) {
     current = 0;
   } else if (document.getElementById('cookingPhaseFinished').classList.contains('active')) {
     current = total;
   } else {
-    current = state.cooking.completedSteps.size + 1; // ingredients done + completed steps
+    current = state.cooking.completedSteps.size + 1;
   }
   const pct = Math.min(100, (current / total) * 100);
   document.getElementById('cookingProgress').style.width = pct + '%';
@@ -2420,15 +2604,12 @@ function startTimer(duration) {
   state.cooking.timer.duration = duration;
   state.cooking.timer.remaining = duration;
   state.cooking.timer.running = true;
-
   const timerBox = document.getElementById('stepTimerBox');
   if (timerBox) {
     timerBox.classList.add('running');
     timerBox.classList.remove('finished');
   }
-
   renderTimerRunning();
-
   state.cooking.timer.intervalId = setInterval(() => {
     state.cooking.timer.remaining--;
     if (state.cooking.timer.remaining <= 0) {
@@ -2462,10 +2643,8 @@ function pauseTimer() {
     state.cooking.timer.intervalId = null;
   }
   state.cooking.timer.running = false;
-
   const timerBox = document.getElementById('stepTimerBox');
   if (timerBox) timerBox.classList.remove('running');
-
   const controlsEl = timerBox ? timerBox.querySelector('.step-timer-controls') : null;
   if (controlsEl) {
     controlsEl.innerHTML = `
@@ -2511,7 +2690,6 @@ function timerFinished() {
   playBeep();
   vibrate();
   showToast('⏰ הטיימר הסתיים!');
-
   const timerBox = document.getElementById('stepTimerBox');
   if (timerBox) {
     timerBox.classList.remove('running');
@@ -2528,14 +2706,11 @@ function timerFinished() {
   }
 }
 
-// Create a beep using Web Audio API - no external file needed
 function playBeep() {
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return;
     const ctx = new AudioCtx();
-
-    // Play 3 short beeps
     const playBeepAt = (startTime, freq = 880, duration = 0.25) => {
       const oscillator = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -2549,7 +2724,6 @@ function playBeep() {
       oscillator.start(startTime);
       oscillator.stop(startTime + duration);
     };
-
     const now = ctx.currentTime;
     playBeepAt(now);
     playBeepAt(now + 0.35);
@@ -2572,7 +2746,6 @@ function vibrate() {
 function exitCookingMode() {
   stopTimer();
   document.getElementById('cookingOverlay').classList.remove('active');
-  // Reopen detail modal
   if (state.cooking.recipeId) {
     showRecipeDetail(state.cooking.recipeId);
   }
@@ -2598,10 +2771,6 @@ function markCookedFromFinished() {
   renderRecipes();
   exitCookingMode();
 }
-
-// ============================================================
-// END COOKING MODE
-// ============================================================
 
 function renderFormTags() {
   const container = document.getElementById('tagsContainer');
@@ -2781,6 +2950,7 @@ function saveRecipe() {
   closeModal('modalRecipeForm');
   renderRecipes();
   renderLastCookedBanner();
+  updateBackupReminder();
 }
 
 function deleteCurrentRecipe() {
@@ -2796,6 +2966,7 @@ function deleteCurrentRecipe() {
       closeModal('modalRecipeDetail');
       renderRecipes();
       renderLastCookedBanner();
+      updateBackupReminder();
       showToast('המתכון נמחק');
     }
   });
@@ -3003,7 +3174,8 @@ function exportData() {
   a.click();
   URL.revokeObjectURL(url);
   closeModal('modalMenu');
-  showToast('הקובץ הורד');
+  markBackupDone();
+  showToast('✅ הקובץ הורד! אל תשכחי לשלוח לעצמך בוואטסאפ');
 }
 
 function importData(file) {
@@ -3027,11 +3199,13 @@ function importData(file) {
           state.currentFilter = 'all';
           clearAllFilters();
           saveData();
+          markBackupDone(); // Importing counts as having a fresh backup
           renderTabs();
           renderRecipes();
           renderLastCookedBanner();
+          updateBackupReminder();
           closeModal('modalMenu');
-          showToast('הגיבוי יובא בהצלחה');
+          showToast('✅ הגיבוי יובא בהצלחה');
         }
       });
     } catch (err) {
@@ -3079,13 +3253,32 @@ document.addEventListener('DOMContentLoaded', () => {
     openRecipeForm();
   });
 
-  document.getElementById('btnMenu').addEventListener('click', () => openModal('modalMenu'));
+  document.getElementById('btnMenu').addEventListener('click', () => {
+    updateMenuBackupInfo();
+    openModal('modalMenu');
+  });
   document.getElementById('btnManageCategories').addEventListener('click', openCategoryManager);
   document.getElementById('btnExport').addEventListener('click', exportData);
   document.getElementById('btnImport').addEventListener('click', () => document.getElementById('importFile').click());
+  document.getElementById('btnHelp').addEventListener('click', () => {
+    closeModal('modalMenu');
+    openModal('modalHelp');
+  });
   document.getElementById('importFile').addEventListener('change', (e) => {
     if (e.target.files[0]) importData(e.target.files[0]);
     e.target.value = '';
+  });
+
+  // Backup reminder actions
+  document.getElementById('btnBackupNow').addEventListener('click', (e) => {
+    e.stopPropagation();
+    exportData();
+    updateBackupReminder();
+  });
+  document.getElementById('btnDismissBackup').addEventListener('click', (e) => {
+    e.stopPropagation();
+    dismissBackupReminder();
+    showToast('מוסתר ליום, יחזור מחר');
   });
 
   document.getElementById('btnAddCat').addEventListener('click', addCategory);
@@ -3170,7 +3363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== COOKING MODE HANDLERS =====
   document.getElementById('btnExitCooking').addEventListener('click', () => {
     showConfirm({
       emoji: '🚪',
@@ -3223,7 +3415,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCurrentStep();
       updateProgressBar();
     } else {
-      // Finished!
       showFinishedPhase();
     }
   });
@@ -3231,11 +3422,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnMarkCooked').addEventListener('click', markCookedFromFinished);
   document.getElementById('btnFinishClose').addEventListener('click', exitCookingMode);
 
-  // Initial render
   renderTabs();
   renderActiveFilters();
   renderLastCookedBanner();
   renderRecipes();
+  updateBackupReminder();
+  updateMenuBackupInfo();
 });
 
 window.openCategoryManager = openCategoryManager;
