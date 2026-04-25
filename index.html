@@ -1583,6 +1583,8 @@ main {
 const STORAGE_KEY = 'recipeBookData_v1';
 const BACKUP_KEY = 'recipeBook_lastBackup';
 const BACKUP_DISMISS_KEY = 'recipeBook_backupDismissed';
+const SORT_KEY = 'recipeBook_sortBy';
+const FILTER_KEY = 'recipeBook_currentFilter';
 
 const DEFAULT_CATEGORIES = [
   { id: 'main', name: 'מנות עיקריות' },
@@ -1624,10 +1626,10 @@ function saveData() {
 // ============================================================
 const state = {
   data: loadData(),
-  currentFilter: 'all', // 'all' | 'favorites' | categoryId
+  currentFilter: localStorage.getItem(FILTER_KEY) || 'all', // 'all' | 'favorites' | categoryId
   searchTerm: '',
   activeFilters: { tags: [], maxPrepTime: null, maxCookTime: null },
-  sortBy: 'dateNew',
+  sortBy: localStorage.getItem(SORT_KEY) || 'dateNew',
   editingRecipeId: null,
   currentPhotoData: null,
   viewingRecipeId: null,
@@ -1740,6 +1742,7 @@ function renderTabs() {
   tabs.querySelectorAll('.tab').forEach(btn => {
     btn.onclick = () => {
       state.currentFilter = btn.dataset.filter;
+      localStorage.setItem(FILTER_KEY, state.currentFilter);
       renderTabs();
       renderRecipes();
     };
@@ -1905,6 +1908,7 @@ function renderRecipes() {
     </select>`;
   document.getElementById('sortSelect').onchange = (e) => {
     state.sortBy = e.target.value;
+    localStorage.setItem(SORT_KEY, state.sortBy);
     renderRecipes();
   };
 
@@ -2582,7 +2586,6 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 
 // Backup
 document.getElementById('menuBackup').onclick = exportData;
-document.getElementById('btnQuickBackup').onclick = exportData;
 
 function exportData() {
   const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
@@ -2643,7 +2646,6 @@ function importData(file) {
 
 // Categories
 document.getElementById('menuCategories').onclick = () => {
-  closeModal('modalMenu');
   renderCategoryList();
   openModal('modalCategories');
 };
@@ -2730,7 +2732,6 @@ document.getElementById('newCategoryName').addEventListener('keypress', (e) => {
 
 // Sync guide
 document.getElementById('menuSync').onclick = () => {
-  closeModal('modalMenu');
   openModal('modalSync');
 };
 
@@ -2746,7 +2747,6 @@ document.getElementById('menuPrint').onclick = () => {
 
 // About
 document.getElementById('menuAbout').onclick = () => {
-  closeModal('modalMenu');
   document.getElementById('aboutStats').innerHTML = `
     📚 ${state.data.recipes.length} מתכונים<br>
     📁 ${state.data.categories.length} פרקים<br>
@@ -2915,20 +2915,31 @@ if ('serviceWorker' in navigator) {
 // ============================================================
 // INIT
 // ============================================================
+function hideSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  splash.classList.add('hide');
+  setTimeout(() => splash.remove(), 500);
+}
+
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('splash').classList.add('hide');
-    setTimeout(() => document.getElementById('splash').remove(), 500);
-  }, 800);
+  setTimeout(hideSplash, 600);
 });
 
-renderTabs();
-renderActiveFilters();
-renderRecipes();
-checkBackupReminder();
+// Safety net: ensure splash hides even if 'load' doesn't fire
+setTimeout(hideSplash, 2500);
 
-// Set initial sort visible
-console.log(`📖 ספר המתכונים נטען: ${state.data.recipes.length} מתכונים, ${state.data.categories.length} פרקים`);
+try {
+  renderTabs();
+  renderActiveFilters();
+  renderRecipes();
+  checkBackupReminder();
+  console.log(`📖 ספר המתכונים נטען: ${state.data.recipes.length} מתכונים, ${state.data.categories.length} פרקים`);
+} catch (err) {
+  console.error('Init error:', err);
+  hideSplash();
+  showToast('אירעה שגיאה - נסי לרענן');
+}
 </script>
 </body>
 </html>
