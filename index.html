@@ -10,8 +10,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>ספר המתכונים שלי</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1203,7 +1206,7 @@ main {
 <!-- ===== Backup Reminder ===== -->
 <div class="backup-reminder" id="backupReminder">
   <span class="icon">💾</span>
-  <span class="text">לא עשית גיבוי כבר זמן רב - <button class="btn-link" id="btnQuickBackup">לגבות עכשיו</button></span>
+  <span class="text" id="backupReminderText"></span>
   <button class="close-btn" id="btnDismissBackup" aria-label="סגירה">×</button>
 </div>
 
@@ -1394,7 +1397,10 @@ main {
       <div class="menu-list">
         <button class="menu-item" id="menuBackup">
           <span class="icon">📥</span>
-          <span class="label">גיבוי - הורדת קובץ</span>
+          <span class="label">
+            גיבוי - הורדת קובץ
+            <div id="lastBackupInfo" style="font-size: 0.78rem; color: var(--text-muted); font-weight: 400; margin-top: 2px;"></div>
+          </span>
         </button>
         <button class="menu-item" id="menuRestore">
           <span class="icon">📤</span>
@@ -2562,7 +2568,10 @@ function timerFinished() {
 // ============================================================
 // MENU & MODALS
 // ============================================================
-document.getElementById('btnMenu').onclick = () => openModal('modalMenu');
+document.getElementById('btnMenu').onclick = () => {
+  updateLastBackupInfo();
+  openModal('modalMenu');
+};
 document.getElementById('fabAdd').onclick = openAddRecipe;
 document.getElementById('btnFilter').onclick = openFilterModal;
 
@@ -2810,19 +2819,66 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 // ============================================================
 // BACKUP REMINDER
 // ============================================================
+function bindQuickBackup() {
+  const btn = document.getElementById('btnQuickBackup');
+  if (btn) btn.onclick = exportData;
+}
+
 function checkBackupReminder() {
   const lastBackup = parseInt(localStorage.getItem(BACKUP_KEY) || '0');
-  const dismissed = localStorage.getItem(BACKUP_DISMISS_KEY);
+  const dismissed = parseInt(localStorage.getItem(BACKUP_DISMISS_KEY) || '0');
   const dayMs = 24 * 60 * 60 * 1000;
+  const banner = document.getElementById('backupReminder');
+  const text = document.getElementById('backupReminderText');
 
-  // Show if no backup ever AND user has 3+ recipes
-  if (!lastBackup && state.data.recipes.length >= 3 && !dismissed) {
-    document.getElementById('backupReminder').classList.add('show');
+  // Don't show for empty libraries
+  if (state.data.recipes.length < 3) {
+    banner.classList.remove('show');
     return;
   }
-  // Show if last backup older than 7 days and not dismissed today
-  if (lastBackup && Date.now() - lastBackup > 7 * dayMs && !dismissed) {
-    document.getElementById('backupReminder').classList.add('show');
+
+  // Hide for 24 hours after dismissal
+  if (dismissed && Date.now() - dismissed < dayMs) {
+    banner.classList.remove('show');
+    return;
+  }
+
+  if (!lastBackup) {
+    text.innerHTML = `<strong>אף פעם לא עשית גיבוי</strong> - <button class="btn-link" id="btnQuickBackup">לגבות עכשיו</button>`;
+    banner.classList.add('show');
+    bindQuickBackup();
+    return;
+  }
+
+  const ageMs = Date.now() - lastBackup;
+  const days = Math.floor(ageMs / dayMs);
+
+  if (days >= 7) {
+    const dateStr = new Date(lastBackup).toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: 'numeric' });
+    text.innerHTML = `הגיבוי האחרון: <strong>לפני ${days} ימים</strong> (${dateStr}) - <button class="btn-link" id="btnQuickBackup">לגבות שוב</button>`;
+    banner.classList.add('show');
+    bindQuickBackup();
+  } else {
+    banner.classList.remove('show');
+  }
+}
+
+function updateLastBackupInfo() {
+  const el = document.getElementById('lastBackupInfo');
+  if (!el) return;
+  const lastBackup = parseInt(localStorage.getItem(BACKUP_KEY) || '0');
+  if (!lastBackup) {
+    el.innerHTML = '⚠️ אף פעם לא בוצע גיבוי';
+    el.style.color = 'var(--coral)';
+  } else {
+    const days = Math.floor((Date.now() - lastBackup) / (24 * 60 * 60 * 1000));
+    const dateStr = new Date(lastBackup).toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: 'numeric' });
+    let label;
+    if (days === 0) label = 'היום';
+    else if (days === 1) label = 'אתמול';
+    else label = `לפני ${days} ימים`;
+    el.innerHTML = `הגיבוי האחרון: ${label} (${dateStr})`;
+    el.style.color = days > 7 ? 'var(--coral)' : 'var(--text-muted)';
   }
 }
 
